@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    <th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/compost/compostEnrollment.js}"></script>
+    <th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">부산물퇴비 신청하기</h2>
+	
+					<!-- nav -->
+       				<th:block th:replace="nav/nav08"></th:block>
+				</div>
+				<div class="sub_in">
+					<form name="frm" id="frm" action="/compost/insertCompost" method="post">
+						<!--  신청하기(S) -->
+						<div class="apply_table">
+							<input type="hidden" id="email" name="email">
+							<div class="a_info">
+								<ul class="m_input">
+									<li>
+										<div class="a_input">
+											<label for="name">이름</label>
+											<input type="text" id="name" name="name">
+										</div>
+									</li>
+									<li>
+										<div class="a_input">
+											<label for="PhNumber">전화번호</label>
+											<input type="text" id="phoneNum" name="phoneNum">
+										</div>
+									</li>
+									<li>
+										<div class="a_input">
+											<label for="celNumber">휴대폰번호</label>
+											<input type="text" id="mobilePhone" name="mobilePhone">
+										</div>
+									</li>
+									<li>
+										<div class="a_input ic_btn">
+											<label for="addNumber">우편번호</label>
+											<input type="text" id="zipCode" name="zipCode" readonly="readonly" style="background-color: white;">
+											<a href="#!" class="btn_chk" onclick="javascript:fn_searchZipCodeOpen('popup')">우편번호</a>
+										</div>
+									</li>
+									<li>
+										<div class="a_input">
+											<label for="address">주소</label>
+											<input type="text" id="address" name="address" readonly="readonly" style="background-color: white;">
+										</div>
+									</li>
+									<li>
+										<div class="a_input">
+											<label for="subAddress">상세주소</label>
+											<input type="text" id="subAddress" name="subAddress">
+										</div>
+									</li>
+									<li>
+									<div class="a_sel day">
+										<label for="year">사용일시</label>
+										<input type="hidden" id="reservationDate" name="reservationDate">
+										<select id="year">
+											<th:block th:each="year:${arrYear}">
+									            <option th:value="${year}" th:text="${year}"></h1>
+									        </th:block>
+										</select>
+										<span class="txt_sel">년</span>
+										<select id="month">
+											<th:block th:each="num : ${#numbers.sequence(1,12)}"> <option th:value="${num}" th:text="${num}"></option></th:block>
+										</select>
+										<span class="txt_sel">월</span>
+										<select id="tenDays">
+											<option value="초순">초순</option>
+											<option value="중순">중순</option>
+											<option value="하순">하순</option>
+										</select>
+									</div>
+								</li>
+									<li>
+										<div class="a_input">
+											<label for="stuffOut">출하품목</label>
+											<input type="text" id="stuffOut" name="breedNm" onkeyup="javascript:fn_breedNmSearch('popup');" >
+										</div>
+										<span class="mi_notice">*출하품목을 입력한후 엔터를 누르세요.</span>
+										<input type="hidden" id="itemCode" name="breedCode">
+									</li>
+									<li>
+										<div class="a_input h_auto">
+											<label for="shipmentIssue">필요량</label>
+											<textarea id="shipmentIssue" name="shipmentIssue"></textarea>
+										</div>
+										<span class="mi_notice tl">※필요한 수량 kg, ton 기재</span>
+									</li>
+								</ul>
+	
+								<!-- 버튼(S) -->
+								<div class="btn_box tc btn_2">
+									<a th:href="@{/compost/compostInfo}" class="btn_type_01 gray cancel">취소</a>
+									<a href="#!" onclick="javascript:fn_compostRegist();" class="btn_type_01 black confirm">확인</a>
+								</div>
+								<!-- 버튼(E) -->
+	
+							</div>
+						</div>
+						<!-- 신청하기(E) -->
+						<!-- 버튼(E) -->
+						</form>
+					</div>
+				</div>
+				<!-- sub-contents(E) -->
+			</div>
+			
+			<!-- nav -->
+			<th:block th:replace="popup/itemPopup"></th:block>
+			
+			<!-- nav -->
+			<th:block th:replace="popup/zipcodePopup"></th:block>
+				
+		</div>
+    </div>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <!-- <script th:src="@{/static/js/shipper/aggregateList.js}"></script> -->
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">안전성 검사란?</h2>
+	
+					<!-- nav -->
+        			<th:block th:replace="nav/nav06"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in">
+
+
+					<div class="tit_comment safe">
+						<h4>안전성 검사란?</h4>
+						<p>농산물도매시장에서 농산물의 유통 전 양질의 농산물을 공급하기 위하여 주 1회 이상 지속적으로 농산물안정성검사를 실시하여
+							오염농산물 유통을 사전 차단하고 부적합농산물의 폐기 등 사후관리 강화 및 생산자에 대한 엄격한 관리로 농약의 오·남용을
+							근절을 위한 검사입니다. 
+						</p>
+					</div>
+
+
+					<!-- 중도매인(S) -->
+					<div class="table_type_trans04 safe">
+						<ul>
+							<li class="t04_tit"><p>검사방법</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:100%;">
+									</colgroup>
+									<tbody>
+									<tr> 
+										<td>
+											강릉농산물도매시장에서는 시민의 안전한 먹거리 제공을 위해 도매시장에 반입되는
+											놋안물에 대해 1주일에 간이속성검사 2회(12품목), 정밀검사 1회(6품목) 잔류농약검사를
+											실시하고 있습니다. 검사결과 부적합으로 판정되어 출하된 농산물은 전량 폐기되며, 
+											생산자는 벌칙으로 1개월간 우리 도매시장을 비롯해 전국 공영도매시장으로 출하를 할수 없으며,
+											이를 어겨 출하할 경우 고발 조치하고 있습니다. 현재, 강릉농산물도매시장의 농산물안전성검사(정밀검사)는
+											강릉시 보건환경연구원에 의뢰하여 실시하고 있습니다.
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+						<ul>
+							<li class="t04_tit"><p>속성검사</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:100%;">
+									</colgroup>
+									<tbody>
+									<tr> 
+									  <td>
+										속성검사는 곤충의 효소를 이용하여 농약의 잔류여부를 신속하고 간편하게 판별할 수 있는 방법으로서<br/>
+											짧은 시간 내에 비교적 많은 건수의 농산물을 검사합니다.<br/>
+											잔류농약<br/>
+											- 25%이하 잔류농약이 전혀 없거나, 극 미량 존재<br/>
+											- 26% ~ 49% 잔류농약이 기준치 이하 존재<br/>
+											- 50% ~ 69% 잔류농약이 기준치 이상 존재할 가능성이 높음<br/>
+											- 정밀검사 의뢰(보건환경연구원)
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+						<ul>
+							<li class="t04_tit"><p>정밀검사</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:100%;">
+									</colgroup>
+									<tbody>
+									<tr> 
+									  	<td>
+											식품위생법에서 규정한 '농약잔류시험법'에 따라 농약잔류 허용기준 이하까지의 농약을
+											정밀하게 분석하는 검사방법으로서 농약의 잔류여부만 판정 가능한 속성검사에 비해
+											잔류된 농약성분(살충·살균 등 160 여종) 및 농도까지 정밀하게 측정하는 검사법입니다.
+											
+										</td>
+									</tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+					</div>
+					<!-- 중도매인(E) -->
+					</div>
+				</div>
+			</div>
+			<!-- sub-contents(E) -->
+		</div>
+    </div>
+</html>

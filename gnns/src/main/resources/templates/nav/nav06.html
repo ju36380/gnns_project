@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lagn="ko" 
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+    <!-- 네비게이션(S) -->
+	<div class="nav_box">
+		<div class="nav_in">
+			<a href="#!" class="btn_home"><img src="/static/img/btn_home.png" alt="네비게이션홈버튼"></a>
+			<ul class="nav_depth_box">
+				<li class="btn_nav_depth_01">
+					<a href="#!">농산물 안전성 검사<span class="nav_arrow"><img src="/static/img/nav_arrow.png" alt="네비화살표"></span></a>
+					<ul class="nav_depth_box_02">
+						<li class="btn_nav_depth_02"><a th:href="@{/company/introduce}">회사소개</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/distributor/actioneer}">유통종사자</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/price/realTimeAucInfo}">실시간 시세정보</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/shipper/salesHistory}">출하주 정산정보</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/shipper/salesHistory}">중도매인 거래정보</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/safety/safetyInfo}">농산물 안전성 검사</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/notice/noticeList}">고객마당</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{compost/compostInfo}">부산물퇴비 무상지원</a></li>
+					</ul>
+				</li>
+				<li class="btn_nav_depth_01">
+					<a href="#!">[[${nav.urlName}]]<span class="nav_arrow"><img src="/static/img/nav_arrow.png" alt="네비화살표"></span></a>
+					<ul class="nav_depth_box_02">
+						<li class="btn_nav_depth_02"><a th:href="@{/safety/safetyInfo}">안전성 검사란?</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/safety/safetySystem}">검사체계</a></li>
+						<li class="btn_nav_depth_02"><a th:href="@{/safety/safetyResult}">검사결과</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 네비게이션(E) -->

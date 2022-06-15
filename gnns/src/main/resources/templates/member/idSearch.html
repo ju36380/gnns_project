@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/member/idSearch.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+			<div class="sub_contents sign">
+				<div class="sub_in sign">
+					
+					<!-- 아이디 찾기(S) -->
+					<div class="intro sign">
+						<h4 class="int_tit">아이디 찾기</h4>
+						<div class="member_info">
+							<form name="frm" id="frm" action="/member/searchId" method="post">
+							<ul class="m_input">
+								
+								<li class="mt70">
+									<div class="mi_input">
+										<label for="part">구분</label>
+										<div class="mi_radio_box">
+											<label class="radio">
+												<input type="radio" name="memType" checked="checked" id="part" value="chul">
+												<i class="rdo"></i>
+												<em class="label-title">출하주</em>
+											</label>
+											<label class="radio">
+												<input type="radio" name="memType" id="part" value="jung">
+												<i class="rdo"></i>
+												<em class="label-title">중도매인</em>
+											</label>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="mi_input">
+										<label for="name">이름</label>
+										<input type="text" id="name" name="userNm">
+									</div>
+								</li>
+								<li>
+									<div class="mi_input">
+										<label for="email">이메일</label>
+										<input type="text" id="email" name="email">
+									</div>
+								</li>
+								
+							</ul>
+							
+							</form>
+							<input type="hidden" id="msg" name="msg" th:value="${msg}">
+							<!-- 버튼(S) -->
+							<div class="btn_box tc btn_2">
+								<a href="/login/login" class="btn_type_01 gray cancel">취소</a>
+								<a href="#!" class="btn_type_01 green sign"  onclick="javascript:fn_idSearch();">확인</a>
+							</div>
+							<!-- 버튼(E) -->
+							
+						</div>
+					</div>
+					<!-- 아이디 찾기(E) -->
+
+
+				</div>
+			</div>
+			<!-- sub-contents(E) -->
+		</div>
+		
+    </div>
+  </div>
+</html>

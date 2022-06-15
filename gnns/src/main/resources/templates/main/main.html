@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/static/css/page/home.css}" >
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <!-- <script th:src="@{/static/js/page/home.js}"></script> -->
+        <script th:src="@{/static/js/main/main.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- main-contents(S) -->
+				<div class="main_contents">
+					<div class="mc_in">
+						
+	
+						<!-- MAIN CONTENT-01(S) -->
+						<div class="mc_in_cont_01">
+	
+							<!-- main-slide(S) -->
+							<div class="main_slide">
+								<!-- Swiper -->
+								<div class="swiper-container">
+									<div class="swiper-wrapper">
+									<div class="swiper-slide web"><a href="@{/}"><img src="/static/img/images/slide-img-01.jpg"></a></div>
+									<div class="swiper-slide web"><a href="@{/}"><img src="/static/img/images/slide-img-02.jpg"></a></div>
+									<div class="swiper-slide web"><a href="@{/}"><img src="/static/img/images/slide-img-03.jpg"></a></div>
+									<div class="swiper-slide web"><a href="@{/}"><img src="/static/img/images/slide-img-04.jpg"></a></div>
+									<div class="swiper-slide mobile"><a href="@{/}"><img src="/static/img/images/slide-img-01_mobile.jpg"></a></div>
+									<div class="swiper-slide mobile"><a href="@{/}"><img src="/static/img/images/slide-img-02_mobile.jpg"></a></div>
+									<div class="swiper-slide mobile"><a href="@{/}"><img src="/static/img/images/slide-img-03_mobile.jpg"></a></div>
+									<div class="swiper-slide mobile"><a href="@{/}"><img src="/static/img/images/slide-img-04_mobile.jpg"></a></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+									<!-- Add Arrows -->
+									<div class="swiper-button-next"></div>
+									<div class="swiper-button-prev"></div>
+								</div>			
+							</div>
+							<script>
+								var swiper = new Swiper('.swiper-container', {
+								  speed: 1000,	
+								  slidesPerView: 1,
+								  spaceBetween: 0,
+								  loop: true,
+								  autoplay: {
+									delay: 3000,
+									disableOnInteraction: false,
+								  },	
+								  pagination: {
+									el: '.swiper-pagination',
+									clickable: true,
+								  },
+								  navigation: {
+									nextEl: '.swiper-button-next',
+									prevEl: '.swiper-button-prev',
+								  },
+								});
+							</script>
+							<!-- main-slide(E) -->		
+							
+							
+							<div class="main_data">
+								<div class="md_in">
+									<h2 class="mc_comment">
+										<span class="t_sub">21세기 농산물 유통의 새로운 모델,</span>
+										<span class="t_point">강릉농산물도매시장</span>이 <em></em>새로이출발합니다!
+									</h2>
+									<div class="mc_01_wrap">
+										<div class="mc_01_tit_box">
+											<div class="fl">
+												<h4 class="mc_01_tit">실시간 시세정보</h4>
+											</div>
+										</div>
+										<div class="main_data_table">
+											<table>
+												<colgroup>
+													<col style="width:15%;">
+													<col style="width:20%;">
+													<col style="width:13%;">
+													<col style="width:13%;">
+													<col style="width:13%;">
+													<col style="width:13%;">
+													<col style="width:13%;">
+												</colgroup>
+												<thead>
+													<tr>
+														<th>품목</th>
+														<th>품종</th>
+														<th>단량/단위</th>
+														<th>등급</th>
+														<th>최저가</th>
+														<th>최고가</th>
+														<th>평균가</th>
+													</tr>
+												</thead>
+												<tbody id="mainPrice">									
+												</tbody>
+											</table>
+										</div>
+										<a th:href="@{/price/priceInfoList}" class="btn_more">더보기</a>
+									</div>
+								</div>
+							</div> 
+						</div>
+						<!-- MAIN CONTENT-01(E) -->
+	
+						<!-- MAIN CONTENT-02(S) -->
+						<div class="mc_in_cont_02">
+							<div class="fl">
+								<ul class="mc_step">
+									<li>
+										<a href="http://market.okdab.com/frd/FrdForwarderReportSystem.do" target="_blank">
+											<span class="ms_web">
+												<img src="/static/img/mc_step_01.png">
+												<img src="/static/img/mc_step_01_on.png">
+											</span>
+											<span class="ms_m">
+												<img src="/static/img/mc_step_01_m.png">
+												<img src="/static/img/mc_step_01_m_on.png">
+											</span>
+										</a>
+									</li>
+									<li>
+										<a th:href="@{/compost/compostInfo}">
+											<span class="ms_web">
+												<img src="/static/img/mc_step_02.png">
+												<img src="/static/img/mc_step_02_on.png">
+											</span>
+											<span class="ms_m">
+												<img src="/static/img/mc_step_02_m.png">
+												<img src="/static/img/mc_step_02_m_on.png">
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="http://gnns.co.kr/ebiz/" target="_blank">
+											<span class="ms_web">
+												<img src="/static/img/mc_step_03.png">
+												<img src="/static/img/mc_step_03_on.png">
+											</span>
+											<span class="ms_m">
+												<img src="/static/img/mc_step_03_m.png">
+												<img src="/static/img/mc_step_03_m_on.png">
+											</span>
+										</a>
+									</li> 
+									<li>
+										<a href="#!">
+											<span class="ms_web">
+												<img src="/static/img/mc_step_04.png">
+												<img src="/static/img/mc_step_04_on.png">
+											</span>
+											<span class="ms_m">
+												<img src="/static/img/mc_step_04_m.png">
+												<img src="/static/img/mc_step_04_m_on.png">
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="fr">
+								<div class="mc_notice">
+									<div class="mc_n_title">
+										<div class="fl">
+											<ul class="mc_tab">
+												<li class="on"><a href="javascript:void(0);">공지사항</a></li>
+												<li><a href="javascript:void(0);">자료실</a></li>
+											</ul>
+										</div>
+										<div class="fr">
+											<a href="notice/noticeList" class="btn_tab_more">+ 더보기</a>
+										</div>
+										
+									</div>
+									<ul class="mc_tab_conts">
+										<li>
+											<div class="notice_table">
+												<table>
+													<colgroup>
+														<col style="width:80%">
+														<col style="width:20%">
+													</colgroup>
+													<thead>
+														<tr>
+															<th></th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody id="mainNotice"> <!-- 5개 -->
+														
+													</tbody>
+												</table>
+											</div>
+										</li>
+										<li>
+											<div class="notice_table">
+												<table>
+													<colgroup>
+														<col style="width:80%">
+														<col style="width:20%">
+													</colgroup>
+													<thead>
+														<tr>
+															<th></th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody id="mainPds">
+														
+													</tbody>
+												</table>
+											</div>										
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- MAIN CONTENT-02(E) -->
+	
+					</div>
+				</div>
+				<!-- main-contents(E) -->
+			
+			</div>
+		</div>
+		
+    </div>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.wholesale.mapper.WholesaleMapper">
+    <select id="getBidSuccessList" parameterType="com.gnns.web.wholesale.model.BidSuccessModel" resultType="com.gnns.web.wholesale.model.BidSuccessModel">
+    	WITH LAST_MISU AS 	
+		(
+			SELECT 
+		  		  ISNULL(MISU_AMT,0) AS MISU
+				, ISNULL(INCOM_AMT,0) AS INCOM
+				, AMER_CODE
+			FROM 
+				AMERID_TBL
+			WHERE SALE_DATE = (
+					SELECT
+						MAX(SALE_DATE) AS LAST_DATE
+					FROM
+					AMERID_TBL
+					WHERE SALE_DATE <![CDATA[<]]>#{schDate}
+			)AND AMER_CODE=#{wholesaleCode}
+		),
+		TODAY_SALE AS(
+			SELECT
+				  SUM(ISNULL(DQTY,0)*ISNULL(DCOST,0)) AS AMT
+				, DAMER_CODE1 AS AMER_CODE
+	 		FROM SALEMD_TBL 
+			WHERE  DSALE_DATE = #{schDate}
+			AND	DAMER_CODE1 = #{wholesaleCode}
+			GROUP BY DAMER_CODE1
+		),
+		TODAY_INCOM AS(
+    		SELECT 
+		  		  IN_AMER AS AMER_CODE
+				, SUM(ISNULL(IN_CASH,0)) AS INCOM
+			FROM SINCOM_TBL 
+			WHERE  IN_DATE = #{schDate}
+			AND    IN_AMER = #{wholesaleCode}
+			GROUP BY IN_AMER
+		)
+		SELECT
+			  A.AMER_CODE AS WHOLESALE_CODE /*중도매인코드*/
+			, A.AMER_NAME AS WHOLESALE_NAME /*중도매인*/
+			, SUBSTRING(#{schDate},1,4)			/*년*/
+			, SUBSTRING(#{schDate},6,2)			/*월*/
+			, SUBSTRING(#{schDate},9,2)			/*일*/
+			, SUBSTRING(#{schDate},1,4)+'년'+SUBSTRING(#{schDate},6,2)+'월'+SUBSTRING(#{schDate},9,2)+'일' AS SCH_DATE
+			, RTRIM(DSALE_NO1)+'-'+RTRIM(DSALE_NO2)	AS ORIGIN_NUMBER /*정산서번호*/
+			, DFARM		AS PRODUCER				/*생산자*/
+			, GM_NAME	AS BREED_NAME			/*품종*/
+			, CONVERT(CHAR(6), CASE WHEN ISNULL(DKASU,'')='' THEN GRA_NAME ELSE ISNULL(DKASU,'') END) AS GRADE /*등급/과수*/
+			, DQTY	AS QTY					/*거래량*/
+			, DCOST	AS UNIT_PRICE				/*경락단가*/
+			, DQTY*DCOST	AS SALES_PRICE		/*판매금액*/
+			, ISNULL(T1.MISU,0)	AS PREVDAY_ACC_RECV				/*전일잔액*/
+			, ISNULL(T1.INCOM,0)				/*전일입금*/
+			, ISNULL(T2.INCOM,0) AS TODAY_DEPOSIT				/*금일입금액*/
+			, ISNULL(T1.MISU,0)+ISNULL(T3.AMT,0)-ISNULL(T2.INCOM,0) AS TODAY_ACC_RECV		/*당일미수금잔액*/
+			, CONVERT(VARCHAR(7), CONVERT(NUMERIC(7,1), DDAN_QTY))+RTRIM(DAN_NAME) AS UNIT_QTY	/*단량*/
+			, ISNULL(T3.AMT,0) AS SALES_PRICE	 			/*금일판매액*/
+		FROM 	SAMERM_TBL A
+		LEFT JOIN SALEMD_TBL 
+		ON (A.AMER_CODE = DAMER_CODE1)
+		LEFT JOIN SALEMM_TBL ON (SALE_DATE = DSALE_DATE AND SALE_SEQ = DSALE_SEQ)
+		LEFT JOIN SGOODM_TBL ON (DGOOD_CODE = GM_CODE)
+		LEFT JOIN SGRADE_TBL ON (DGRADE = GRA_CODE)
+		LEFT JOIN SCHULM_TBL ON (SCHUL = CHUL_CODE)
+		LEFT JOIN SDANUI_TBL ON (DDAN = DAN_CODE)
+		LEFT JOIN LAST_MISU T1 ON (A.AMER_CODE = T1.AMER_CODE)
+		LEFT JOIN TODAY_INCOM T2 ON (A.AMER_CODE = T2.AMER_CODE)
+		LEFT JOIN TODAY_SALE T3 ON (A.AMER_CODE = T3.AMER_CODE)
+		WHERE	DSALE_DATE = #{schDate}
+        AND ISNULL(DQTY,0)*ISNULL(DCOST,0)  <![CDATA[<>]]> 0
+		AND	DAMER_CODE1 = #{wholesaleCode}
+		ORDER BY  DSALE_SEQ, DSALE_NO1, CONVERT(INT, DSALE_NO2)
+    </select>
+    
+    
+    <select id="getOriginTransaction" parameterType="com.gnns.web.wholesale.model.PeriodTransactionModel" resultType="com.gnns.web.wholesale.model.PeriodTransactionModel">
+		SELECT
+	  		  A.SALE_DATE  AS SALE_DATE	 		/*일자*/ 
+			, A.MISU_AMT+A.INCOM_AMT-A.AMT AS LASTDAY_RECV  	/*전일미수금*/
+			, A.AMT AS SALES_PRICE 				/*판매금액*/ 
+			, A.INCOM_AMT AS DEPOSIT 			/*입금액*/
+			, A.MISU_AMT  AS CREDIT_RECV			/*외상 미수금*/
+			, B.AMER_CODE AS WHOLESALE_CODE
+			, B.AMER_NAME AS WHOLESALE_NAME
+		FROM 	AMERID_TBL A LEFT JOIN SAMERM_TBL B ON (A.AMER_CODE = B.AMER_CODE)
+		WHERE 	A.SALE_DATE BETWEEN #{schStrDate} AND #{schEndDate}
+		AND 	B.AMER_CODE = #{wholesaleCode}
+		ORDER BY A.SALE_DATE
+    </select>
+    
+    
+   
+</mapper>    
+

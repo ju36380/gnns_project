@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">회사개요</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav01"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+					<div class="sub_in">
+						<!-- 회사개요(S) -->
+						<div class="about_plan ap01">
+							<p class="ap_ment">21세기 농산물 유통의 새로운 모델, <span>전국최초의 공공출자법인</span></p>
+							<img class="sub_logo_02" src="/static/img/sub_logo_02.png">
+							<div class="market_pic">
+								<img src="/static/img/ap_01_img.png" alt="시장실사" class="pc">
+								<img src="/static/img/ap_01_img_mobile.png" alt="시장실사" class="mobile">
+							</div>
+						</div>
+	
+						<div class="about_plan ap02">
+							<div class="ap02_top">
+									<p>강릉농산물도매시장은 농업인이 땀흘려 생산한 농산물을 전 품목 상장경매를 통하여<em></em>
+										공정거래를 선도하고, 농업인 실익증대에 노력하겠습니다. <em></em>
+										강릉농산물도매시장은 늘 새로운 다짐으로 농업인과 함께 하고 소비자에게 희망을 주는<em></em>
+										도매시장이 되도록 최선을 다할 것입니다.</p>								
+							</div>
+							<div class="ap02_bottom">
+								<dl>
+									<dt>회사명</dt><dd>(주)강릉농산물도매시장</dd>
+									<dt>개장일</dt><dd>1999년 11월 24일</dd>
+									<dt>자본금</dt><dd>20억</dd>
+									<dt>임직원</dt><dd>19명</dd>
+									<dt>사업내용</dt><dd>법정도매시장</dd>
+								</dl>
+								<dl>
+									<dt>대지/건물</dt><dd>65,825㎡ / 14,021㎡</dd>
+									<dt>주차대수</dt><dd>260대</dd>
+									<dt>중도매인</dt><dd>42명</dd>
+									<dt>매매참가인</dt><dd>3명</dd>
+									<dt>취급품목</dt><dd>청과류(과일,채소)</dd>
+								</dl>
+							</div> 
+						</div>
+	
+						<!-- 주요시설(S) -->	
+						<div class="table_type_list">
+							<div class="ttl_tit">
+								<p>주요시설</p>
+							</div>
+							<div class="table_type_trans02 fac">
+								<ul class="trans02_body">
+									<li class="col">청과물동</li>
+									<li class="col">1동</li>
+									<li class="col">9,785 ㎡</li>
+									<li class="col">경매장, 중도매인점포, 저온저장고, 하역장, 법인사무실, 작업실, 식당</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">트럭판매동</li>
+									<li class="col">1동</li>
+									<li class="col">924 ㎡</li>
+									<li class="col">중도매인점포(트럭판매시설)</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">양념판매동</li>
+									<li class="col">1동</li>
+									<li class="col">168 ㎡</li>
+									<li class="col">양념판매장</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">관련상품동</li>
+									<li class="col">1동</li>
+									<li class="col">1,922 ㎡</li>
+									<li class="col">농·축산물 및 판매시설 등</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">관리동</li>
+									<li class="col">1동</li>
+									<li class="col">1,817 ㎡</li>
+									<li class="col">방송실, 전기실, 기계실</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">저온저장고</li>
+									<li class="col">2동</li>
+									<li class="col">624 ㎡</li>
+									<li class="col">저온저장고</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">후숙실동</li>
+									<li class="col">1동</li>
+									<li class="col">105 ㎡</li>
+									<li class="col">후숙실</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">쓰레기처리동</li>
+									<li class="col">1동</li>
+									<li class="col">270 ㎡</li>
+									<li class="col">쓰레기감량시설, 자재관리실</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">오물처리동</li>
+									<li class="col">1동</li>
+									<li class="col">168 ㎡</li>
+									<li class="col">톱밥저장실, 장비관리실</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">소분작업장</li>
+									<li class="col">2동</li>
+									<li class="col">500 ㎡</li>
+									<li class="col">소분작업장</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">부속동</li>
+									<li class="col">1동</li>
+									<li class="col">551 ㎡</li>
+									<li class="col">경비실, 작업장</li>
+								</ul>
+							</div>
+						</div>
+						<!-- 주요시설(E) -->	
+	
+						<!-- 경매시간(S) -->	
+						<div class="table_type_list">
+							<div class="ttl_tit">
+								<p>경매시간</p>
+							</div>
+							<div class="table_type_trans02 auc">
+								<ul class="trans02_body">
+									<li class="col">과일류</li>
+									<li class="col">경매시간 : 오전 5시</li>
+									<li class="col">경매장소 : 과일경매장</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">채소류</li>
+									<li class="col">경매시간 : 오후 6시</li>
+									<li class="col">경매장소 : 채소경매장</li>
+								</ul>
+								<ul class="trans02_body">
+									<li class="col">휴업일</li>
+									<li class="col">매주일요일 / 신정 / 설날연휴 / 추석연휴</li>
+								</ul>
+							</div>
+						</div>
+						<!-- 경매시간(E) -->
+	
+						<!-- 회사개요(E) -->						
+					</div>
+				</div>
+				<!-- sub-contents(E) -->	
+			</div>
+		</div>
+		
+    </div>
+</html>

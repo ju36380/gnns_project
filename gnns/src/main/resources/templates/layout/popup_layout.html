@@ -1,0 +1,17 @@
+<html lagn="ko" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>강릉농산물도매시장에 오신것을 환영합니다.</title>
+        
+        <!-- config fragment 사용 -->
+        <th:block th:replace="fragment/config :: configFragment" ></th:block>
+    </head>
+    
+    <body>
+		<th:block layout:fragment="content"></th:block>
+    </body>
+
+</html>

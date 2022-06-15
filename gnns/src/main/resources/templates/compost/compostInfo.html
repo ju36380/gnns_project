@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    <th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <!-- <script th:src="@{/static/js/compost/compostList.js}"></script> -->
+    <th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+					<div class="sub_top">
+						<h2 class="sub_title">부산물퇴비 소개</h2>
+						<!-- nav -->
+        				<th:block th:replace="nav/nav08"></th:block>
+					</div>
+					<div class="sub_in">
+	
+						<!-- 부산물퇴비소개(S) -->
+						<div class="table_type_trans04">
+							<ul>
+								<li class="t04_tit"><p>지원배경</p></li>
+								<li class="t04_box ver2">
+									<p class="p_02 dot">
+										생산자 농민이 도매시장에 위탁한 농산물이 유통 단계를 거쳐 소비자에게 판매됩니다.<br/>
+										개중 판매되지 못하거나 상품가치를 잃어 폐기처분 직전인 농산물을 부산물 퇴비로 재생하여 생산자인 농민에게
+										부상으로 공급함으로써 농가비용을 감소시키며 도매시장과 농민이 서로 상생의 길을 모색하고자 실시하게 됨.
+									</p>
+	   								<p class="p_02 dot indent_text7"><span>부산물퇴비성분 : </span>농산물쓰레기 + 톱밥 + 깻묵</p>
+	   								<p class="p_02 dot indent_text4"><span>주의사항 : </span>저희 부산물퇴비는 질소질이 다소 부족하여 농가에서 퇴비로 사용시 축산분뇨나, 양계계분을 섞어 사용하시길 바라며 충분히 발효하시길 바랍니다.</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t04_tit"><p>지원에 따른 사항</p></li>
+								<li class="t04_box ver2">
+									<p class="p_02 dot">무상 지원대상</p>
+									<p class="p_03 num"><span>1</span>도매시장 출하주 등록이 되고 출하실적이 있는 분 (당해실적 : 개인 1천만원, 작목반 단체 3천만원)</p>
+									<p class="p_03 num"><span>2</span>개인보다 단체 작목반 우선공급</p>
+									<p class="p_03 num"><span>3</span>개인은 최고 10톤(당사차량 2회 수송)</p>
+									<p class="p_03 num"><span>4</span>단체는 최고 50톤(당사차량 10회 수송)</p>
+									<p class="p_04 sl"><span>※</span>지역강릉시관내 5톤차량 진입 가능한 곳</p>
+									<p class="p_02 dot">월 생산량 : 10 ~ 25톤(동절기, 하절기)</p>
+									<p class="p_02 dot">대상선정시 담당자가 사전에 연락드립니다.</p>
+	
+									<ul class="photo_box">
+										<li><img th:src="@{/static/img/photo_01.png}" alt="부산물퇴비사진1"></li>
+										<li><img th:src="@{/static/img/photo_02.png}" alt="부산물퇴비사진2"></li>
+										<li><img th:src="@{/static/img/photo_03.png}" alt="부산물퇴비사진3"></li>
+										<li><img th:src="@{/static/img/photo_04.png}" alt="부산물퇴비사진4"></li>
+										<li><img th:src="@{/static/img/photo_05.png}" alt="부산물퇴비사진5"></li>
+										<li><img th:src="@{/static/img/photo_06.png}" alt="부산물퇴비사진6"></li>
+									</ul>
+									<div class="btn_box btn_2 tc">
+										<a th:href="@{/login/login}" sec:authorize="isAnonymous()" class="btn_type_01 green">신청하기</a>
+										<a th:href="@{/compost/compostEnrollment}" sec:authorize="isAuthenticated()" class="btn_type_01 green">신청하기</a>
+										<a th:href="@{/compost/compostList}" class="btn_type_01 black">리스트보기</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!-- 부산물퇴비소개(E) -->
+				
+	
+					</div>
+				</div>
+				<!-- sub-contents(E) -->
+			</div>
+		</div>
+		
+    </div>
+</html>

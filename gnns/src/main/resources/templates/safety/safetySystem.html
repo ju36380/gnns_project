@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <!-- <script th:src="@{/static/js/shipper/salesHistoryList.js}"></script> -->
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">검사체계</h2>
+	
+					<!-- nav -->
+        			<th:block th:replace="nav/nav06"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in">
+
+					<!-- 중도매인(S) -->
+					<div class="table_type_trans04 inspect">
+						<ul>
+							<li class="t04_tit"><p>속성검사</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:25%;">
+										<col style="width:75%;">
+									</colgroup>
+									<tbody>
+									<tr> 
+									  <th>시료채취</th>
+									  <td>
+										· 경매 시작전 무작위 채취 (5~10잎)<br/>
+										· 대상 : 채소류 위주
+									</td>
+									</tr>
+									<tr> 
+										<th>속성검사</th>
+										<td>
+											· 농약 잔류 여부 판별<br/>
+											· 검사 항목 : 살충제 성분 31종<br/>
+											· 검사시간 : 1시간 20분
+										</td>
+									  </tr>
+									  <tr> 
+										<th>양성판정될 때</th>
+										<td>
+											· 양성 : 저해율 50% 이상<br/>
+											· 음성 : 저해율 50% 미만
+										</td>
+									  </tr>
+									  <tr> 
+										<th class="bg-red">정밀검사 추가</th>
+										<td>
+											· 정밀검사용 시료 추가 채취<br/>
+											· 수거량 : 1상자 또는 3kg 분량
+										</td>
+									  </tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+						<ul class="mt50">
+							<li class="t04_tit"><p>정밀검사</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:25%;">
+										<col style="width:75%;">
+									</colgroup>
+									<tbody>
+									<tr> 
+									  <th>시료채취</th>
+									  <td>
+										· 유상수거 : 1상자 또는 3kg 분량<br/>
+										· 대상 : 경매전 농산물
+									</td>
+									</tr>
+									<tr> 
+										<th class="bg-red arrow-bottom">정밀검사</th>
+										<td>
+											· 검사 항목 : 살충·살균제 등 160여종<br/> 
+											· 경매전 검사 완료
+										</td>
+									  </tr>
+									  <tr> 
+										<th>적합·부적합 판정</th>
+										<td>
+											· 품목별 잔류 허용 기준 초과 여부 판정<br/>
+											· 기준 이내 : 적합, 기준초과 : 부적합
+										</td>
+									  </tr>
+									  <tr> 
+										<th>정밀검사 결과 조치</th>
+										<td>
+											· 부적합 농산물 유통중지<br/>
+											· 관계기관 통보 및 보고
+										</td>
+									  </tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+						<ul class="mt50">
+							<li class="t04_tit bdtn"><p></p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:25%;">
+										<col style="width:75%;">
+									</colgroup>
+									<tbody>
+									<tr> 
+									  <th class="bg-yellow">행정 조치</th>
+									  <td>
+										· 부적합 농산물 폐기 등<br/>
+										· 생산지 출하금지
+									  </td>
+									</tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+					</div>
+					<!-- 중도매인(E) -->
+				</div>
+			</div>
+			<!-- sub-contents(E) -->
+		</div>
+	</div>
+		
+    </div>
+</html>

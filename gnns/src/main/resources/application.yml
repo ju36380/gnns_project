@@ -1,0 +1,39 @@
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+server:
+  port: 8090
+spring:
+  datasource:
+     hikari:
+       main:
+        platform: mssql
+        driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        #jdbc-url: jdbc:sqlserver://121.187.200.27:38003;databaseName=DMDB_TEST
+        jdbc-url: jdbc:sqlserver://121.187.200.27:37903;databaseName=DBDB_TEST # 테스트 db계정
+        #jdbc-url: jdbc:sqlserver://121.187.200.27:37903;databaseName=DMDB
+        username: wrprog
+        password: dnflaWkd@#3334
+  mvc:
+    #view:
+    #  prefix: /WEB-INF/jsp/
+    #  suffix: .jsp
+    static-path-pattern: "/static/**"
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    #view-names: thymeleaf/*
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2008Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+  spring.resources.static-locations: classpath:/static/
+  spring.resources.add-mappings: true
+
+logging:
+  level: 
+    root: INFO

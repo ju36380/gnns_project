@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">인사말</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav01"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+					<div class="sub_in">
+							<!-- 인사말(S) -->
+						<div class="ment_box">
+							<p class="txt_ment">안녕하십니까?</p>
+							<p class="txt_ment">(주)강릉농산물도매시장 대표이사 임규수입니다.</p>
+							<br/>
+							<p class="txt_ment">당사는 1999년 개장 이래 영동지역 농산물 유통의 중심으로<em></em>
+							생산자와 소비자의 가교역할 및 농산물유통의 선진화에 <em></em>
+							충실히 임하고 있습니다.</p>
+							<br/>
+							<p class="txt_ment">최근 건강한 먹거리에 대한 소비자의 욕구가 다양해지고 <em></em>
+							기후 변화로 안정적인 농산물 생산이 어려워지고 있습니다.</p>
+							<br/>
+							<p class="txt_ment">이에 (주)강릉농산물도매시장 임직원과 중도매인들은 <em></em> 
+							소비자에게는 안전한 먹거리를 제공하고 농업인들에게는 <em></em>
+							판로걱정 없이 영농에 전념할 수 있도록 최선을 다하겠습니다.</p>
+							<br/>
+							<p class="txt_ment">생산자에게는 희망과 기쁨을 드리고 소비자에게는 <em></em>
+							만족을 줄 수 있는 공영도매시장 본연의 역할에 충실히 하여 <em></em>
+							지역경제와 지역농업인의 버팀목이 되는 <em></em>
+							도매시장이 되겠습니다. </p>
+							<br/>
+							<p class="txt_ment">감사합니다.</p>
+							<div class="txt_from">
+								<img class="sub_logo" src="/static/img/sub_logo.png" alt="로고">
+								<span class="name_sig">대표이사 임규수 올림</span>
+							</div>
+						</div>
+						<!-- 인사말(E) -->
+					</div>
+				</div>
+				<!-- sub-contents(E) -->	
+			</div>
+		</div>
+		
+    </div>
+</html>

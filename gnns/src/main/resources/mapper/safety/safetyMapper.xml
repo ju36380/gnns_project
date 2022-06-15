@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.safety.mapper.SafetyMapper">
+
+	<sql id="selectSafetyListSearchCondition">
+		<if test='searchType == "subject"'>
+  		AND [제목] LIKE '%'+#{keyword}+'%'	
+  		</if>
+  		<if test='searchType == "contents"'>
+  		AND [내용] LIKE '%'+#{keyword}+'%'
+  		</if>
+	</sql>
+	
+ 	<select id="getSafetyList" parameterType="com.gnns.web.safety.model.SafetyModel" resultType="com.gnns.web.safety.model.SafetyModel">
+    	SELECT 
+			  TOP (#{psize}) [일련번호] AS BOARD_SEQ
+			, [제목] as SUBJECT
+		    , [내용] as CONTENTS
+		    , [이름] as REG_ID
+		    , CONVERT(CHAR(10), [날짜], 23) as REG_DTTM
+		    , [파일] as ATTCHEMENT_FILE
+		    , SUBSTRING([파일],CHARINDEX('.', [파일])+1,5) AS EXE_TYPE
+		    , [조회수] as READ_CNT
+		    , (
+		    	SELECT COUNT([일련번호]) FROM WEB_SAFETY
+		        WHERE 1=1
+		        <include refid="selectSafetyListSearchCondition"/>
+		       )-(ROW_NUMBER() OVER(ORDER BY [날짜] DESC)+(#{psize}*(#{page}-1)))+1 AS ROW_NUM
+		    FROM WEB_SAFETY
+		WHERE [일련번호] NOT IN (
+			SELECT 
+				TOP (#{psize}*(#{page}-1)) [일련번호] FROM WEB_SAFETY
+			WHERE 1=1
+			<include refid="selectSafetyListSearchCondition"/>	
+			ORDER BY [날짜] DESC) 
+		<include refid="selectSafetyListSearchCondition"/>
+		ORDER BY [날짜] DESC
+    </select>
+    
+    <select id="getSafetyListCnt" parameterType="com.gnns.web.safety.model.SafetyModel" resultType="com.gnns.web.safety.model.SafetyModel">
+    	SELECT /*getNoticeListCount [전체건수]*/	
+    		COUNT(*) AS TOT_CNT
+    	  , CAST(CEILING(CAST(COUNT(*) AS FLOAT)/10) AS INT) AS TOT_PAGE 
+    	FROM WEB_SAFETY
+    	WHERE
+    	1=1
+    	<include refid="selectSafetyListSearchCondition"/>
+    </select>  
+    
+    <!-- 2021-11-17 준혁(추가) -->  
+    <update id="updateSafetyReadCnt" parameterType="com.gnns.web.safety.model.SafetyModel">
+    	UPDATE WEB_SAFETY
+    	SET [조회수] = (SELECT [조회수] FROM WEB_SAFETY WHERE [일련번호]=#{boardSeq})+1
+    	WHERE [일련번호]=#{boardSeq}
+    </update>
+    
+    <select id="getSafetyRead" parameterType="com.gnns.web.safety.model.SafetyModel" resultType="com.gnns.web.safety.model.SafetyModel">
+        SELECT
+			  [일련번호] AS BOARD_SEQ
+			, [제목] AS SUBJECT
+			, [내용] AS CONTENTS
+			, CONVERT(CHAR(19), [날짜], 120) as REG_DTTM
+			, REPLACE([이름], ' ', '') AS REG_ID
+			, [파일] AS ATTCHEMENT_FILE
+			, SUBSTRING([파일],CHARINDEX('.', [파일])+1,5) AS EXE_TYPE
+			, [조회수] AS READ_CNT
+			, [태그] AS TAG
+		FROM WEB_SAFETY
+		WHERE [일련번호] =#{boardSeq}
+    </select>
+    
+    <insert id="insertSafety" parameterType="com.gnns.web.safety.model.SafetyModel">
+    	INSERT INTO WEB_SAFETY
+		(
+			  [제목]
+			, [내용]
+			, [날짜]
+			, [태그]
+			, [이름]
+			, [조회수]
+			, [구분]
+			, [파일]
+		)
+		VALUES
+		(
+			  #{subject}
+			, #{contents}
+			, getDate()
+			, #{tag}
+			, #{regNm}
+			, 0
+			, 1
+			, #{attchementFile}
+		)
+    </insert>
+    
+    <select id="getAttachementFile" parameterType="com.gnns.web.safety.model.SafetyModel" resultType="com.gnns.web.safety.model.SafetyModel">
+        SELECT
+			  [파일] AS ATTCHEMENT_FILE
+			, SUBSTRING([파일],CHARINDEX('.', [파일])+1,5) AS EXE_TYPE
+		FROM WEB_SAFETY
+		WHERE [일련번호] =#{boardSeq}
+    </select>
+    
+    <update id="updateSafety">
+    	UPDATE WEB_SAFETY 
+		SET 
+			[이름] = #{regNm},
+			[태그] = #{tag},
+			[제목] = #{subject},
+			[내용] = #{contents},
+			[파일] = #{attchementFile}
+		WHERE [일련번호] = #{boardSeq}
+    </update>
+    
+    <delete id="safetyAdminDelete">
+    	DELETE
+    	FROM WEB_SAFETY
+    	WHERE [일련번호] = #{boardSeq}
+    </delete>
+    
+    <!-- 2021-11-17 준혁(추가) -->  
+    
+</mapper>    
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.cmmn.mapper.CmmnFileMapper">
+
+ 	<select id="selectFileNm" parameterType="com.gnns.web.common.model.FileModel" resultType="string">
+    	SELECT
+    		[파일] AS FILE_NAME
+    	FROM
+    		${tbNm}
+    	WHERE 
+    		[일련번호] = ${fileSeq}	
+    </select>
+    
+    <!-- 2021-11-18 준혁 (추가) -->
+    <update id="updateFile">
+    	UPDATE
+    		${tbNm}
+   		SET
+		<if test='hide == "2"'>
+			[파일] = '${fileName}'
+		</if>
+		<if test='hide == "1"'>
+			[파일] = ''
+		</if>
+		WHERE [일련번호] = ${fileSeq}	
+    </update>
+    
+</mapper>    

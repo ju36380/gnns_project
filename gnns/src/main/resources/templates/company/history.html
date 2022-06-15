@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">연혁</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav01"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+					<div class="sub_in">
+						<!-- 연혁(S) -->
+						<div class="table_type_trans03">
+							<ul>
+								<li class="t03_tit"><p>1994</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>09.21.</span>강릉농산물도매시장 사업승인</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>1995</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>12.21.</span>도매시장 건설 기본계획 승인</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>1998</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>03.20.</span>강릉농산물도매시장 건설공사 착공</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>1999</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>08.26.</span>공공출자법인 설립 창립총회, 제1대 대표이사 최철규 취임</p>
+									<p class="txt_db"><span>09.06.</span>공공출자법인 설립 등기</p>
+									<p class="txt_db"><span>09.19.</span>강릉농산물도매시장 준공</p>
+									<p class="txt_db"><span>09.20.</span>강릉농산물도매시장 개설 허가</p>
+									<p class="txt_db"><span>11.24</span>강릉농산물도매시장 개장</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2002</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>09.26.</span>제2대 대표이사 최기석 취임</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2003</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>03.20.</span>제3대 대표이사 윤철준 취임</p>
+									<p class="txt_db"><span>06.18.</span>전자경매 추진사업 승인</p>
+									<p class="txt_db"><span>12.18.</span>전자경매 시연회</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2004</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>01.07.</span>전자경매 시행</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2006</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>03.31.</span>제4대 대표이사 최기석 취임</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2007</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>11.00</span>농림부(재)농림수산정보센터 전자거래시스템 시범법인 지정</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2008</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>04.22.</span>전자거래시스템 개설자 인증</p>
+									<p class="txt_db"><span>04.25.</span>전자거래 시연회</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2009</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>03.31.</span>제5대 대표이사 최기석 취임</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2012</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>04.24.</span>제6대 대표이사 한창운 취임</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2015</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>04.24.</span>제7대 대표이사 한창운 취임</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2018</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>04.24.</span>제8대 대표이사 임윤승 취임</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>2021</p></li>
+								<li class="t03_box">
+									<p class="txt_db"><span>04.23.</span>제9대 대표이사 임규수 취임</p>
+								</li>
+							</ul>
+						</div>
+						<!-- 연혁(E) -->	
+					</div>
+				</div>
+				<!-- sub-contents(E) -->	
+			</div>
+		</div>
+		
+    </div>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lagn="ko" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- index.html 고유 스크립트 추가 -->
+ <th:block layout:fragment="script">
+     <script th:src="@{/static/js/popup/itemPopup.js}"></script>
+ </th:block>
+</head>
+    <!-- 팝업(S) -->
+	<div class="popup_bg" id="stuffOutPop">
+		<div class="popup address">
+			<div class="pop_header">
+				<h2 class="p_tit">
+					<!-- 우편번호 찾기 -->
+					품목찾기
+				</h2>
+				<button class="p_close"></button>
+			</div>
+			<div class="p_search_box">
+				<div class="p_s_top">
+					<h4 class="p_notice">
+						<!-- 찾고자 하는 주소의 동을 입력해주세요 -->
+						검색하고자 하는 품목을 입력해주세요
+					</h4>
+					<div class="p_s_input">
+						<input type="text" placeholder="예시)사과" id="searchInput" onkeyup="javascript:fn_breedNmSearch('view');"><label for="searchInput"></label>
+						<button class="p_btn_search" onclick="javascript:fn_getItem('view')"></button>
+					</div>
+				</div>
+				<div class="p_s_result_box" id="stuffOutPopResult">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 팝업(E) -->

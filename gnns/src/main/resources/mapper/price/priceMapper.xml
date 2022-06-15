@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.price.mapper.PriceMapper">
+
+	<select id="getMainCategory" parameterType="com.gnns.web.price.model.PriceCategoryCodeModel" resultType="com.gnns.web.price.model.PriceCategoryCodeModel">
+    	SELECT /*getMainCategory [대분류조회]*/
+			  GG_CODE AS CD
+			, GG_NAME AS CD_NM
+		FROM SGOODG_TBL
+		ORDER BY GG_CODE
+    </select>
+    
+    <select id="getSubCategory" parameterType="com.gnns.web.price.model.PriceCategoryCodeModel" resultType="com.gnns.web.price.model.PriceCategoryCodeModel">
+    	SELECT /*getMainCategory [대분류조회]*/
+			  PUM_CODE AS CD
+			, PUM_NAME AS CD_NM
+		FROM SPUMOK_TBL
+		WHERE PUM_LARGE = #{cd}
+		ORDER BY PUM_CODE
+    </select>
+    
+    <sql id="getProductPriceSql">
+    	SELECT	/*getProductPrice 실시간 가격 조회*/
+		 	  MAX(PUM_NAME) AS ITEM_NAME
+		 	, MAX(GM_NAME) AS  BREED_NAME
+		 	, convert(NUMERIC(7,1), DDAN_QTY) AS UNIT_QTY
+		 	, MAX(DAN_NAME) AS UNIT
+		 	, MAX(GRA_NAME) AS GRADE
+		 	, convert(NUMERIC(8,0), MIN(DCOST)) AS LOW_PRICE
+		 	, convert(NUMERIC(8,0), MAX(DCOST)) AS MAX_PRICE
+		 	, convert(NUMERIC(8,0), ROUND(AVG(DCOST),-2)) AS AVG_PRICE
+		FROM
+			SALEMD_TBL
+		LEFT JOIN
+		 	SGOODM_TBL
+		ON DGOOD_CODE = GM_CODE
+		LEFT JOIN
+			SGRADE_TBL
+		ON DGRADE = GRA_CODE
+		LEFT JOIN
+		 	SDANUI_TBL
+		ON DDAN = DAN_CODE
+		LEFT JOIN	
+			SPUMOK_TBL 
+		ON 
+			GM_MID = PUM_CODE
+		LEFT JOIN
+			SALEMM_TBL
+		ON
+			    DSALE_DATE = SALE_DATE
+			AND DSALE_SEQ = SALE_SEQ
+		WHERE		
+		  	DSALE_DATE BETWEEN #{schStrDate} AND #{schEndDate}
+		AND GM_LARGE BETWEEN #{mCate1} AND #{mCate2}
+		AND GM_MID   BETWEEN #{sCate1} AND #{sCate2}
+		AND GM_CODE BETWEEN '0000' AND '9999'
+		AND DCOST > 0  
+		AND SMM = '1'
+		GROUP BY 
+			SUBSTRING(DSALE_NO1,1,1), GM_LARGE, GM_MID, DGOOD_CODE, DDAN_QTY, DDAN, DGRADE  
+		ORDER BY 
+			SUBSTRING(DSALE_NO1,1,1), GM_LARGE, GM_MID, DGOOD_CODE, DDAN_QTY, DDAN, DGRADE
+    </sql>
+    
+    <select id="getPriceInfoList" parameterType="com.gnns.web.price.model.PriceInfoModel" resultType="com.gnns.web.price.model.PriceInfoModel">
+		<include refid="getProductPriceSql"></include>
+		
+	</select>
+	
+	<select id="getPriceInfoListCount" parameterType="com.gnns.web.price.model.PriceInfoModel" resultType="com.gnns.web.price.model.PriceInfoModel">
+		SELECT
+			  COUNT(ITEM_NAME) AS TOT_CNT
+			, CAST(CEILING(CAST(COUNT(ITEM_NAME) AS FLOAT)/10) AS INT) AS TOT_PAGE
+			
+		FROM
+		(
+			<include refid="getProductPriceSql"></include>
+		)A
+	</select>
+	
+	<!-- 2021-11-26 준혁(추가) -->	
+	<select id="getAuctionList" parameterType="com.gnns.web.price.model.PriceModel" resultType="com.gnns.web.price.model.PriceModel">
+		SELECT
+			dai,
+			ipd_seq AS ipdSeq,
+			chul_name AS chulName,
+			farm,
+			good,
+			dan_qty AS danQty,
+			grade,
+			qty,
+			cost,
+			amer,
+			gubn,
+			in_time AS inTime
+		FROM WEBSIL_TBL
+		WHERE dai = #{dai}
+		AND DATEDIFF(MI, in_time, GETDATE()) <![CDATA[ < ]]> 10
+		ORDER BY gubn ASC, in_time ASC
+	</select>
+	
+	<!-- 2021-12-15 준혁(추가) -->
+	<select id="getMainPriceInfo" parameterType="hashMap" resultType="com.gnns.web.price.model.PriceInfoModel">
+		SELECT TOP 8
+			MAX(PUM_NAME) AS itemName
+			, MAX(GM_NAME) AS  breedName
+			, convert(NUMERIC(7,1), DDAN_QTY) AS unitQty
+			, MAX(DAN_NAME) AS unit
+			, MAX(GRA_NAME) AS grade
+			, convert(NUMERIC(8,0), MIN(DCOST)) AS lowPrice
+			, convert(NUMERIC(8,0), MAX(DCOST)) AS maxPrice
+			, convert(NUMERIC(8,0), ROUND(AVG(DCOST),-2)) AS avgPrice
+		FROM
+			SALEMD_TBL
+		LEFT JOIN
+			SGOODM_TBL
+		ON DGOOD_CODE = GM_CODE
+		LEFT JOIN
+			SGRADE_TBL
+		ON DGRADE = GRA_CODE
+		LEFT JOIN
+			SDANUI_TBL
+		ON DDAN = DAN_CODE
+		LEFT JOIN	
+			SPUMOK_TBL 
+		ON 
+			GM_MID = PUM_CODE
+		LEFT JOIN
+			SALEMM_TBL
+		ON
+			DSALE_DATE = SALE_DATE
+			AND DSALE_SEQ = SALE_SEQ
+		WHERE 1 = 1
+		AND DSALE_DATE > #{preDay}
+		AND DSALE_DATE <![CDATA[ < ]]>= #{nowDay} 	
+		AND GM_LARGE BETWEEN '00' AND '99'
+		AND GM_MID   BETWEEN '0000' AND '9999'
+		AND GM_CODE BETWEEN '0000' AND '9999'
+		AND DCOST > 0  
+		AND SMM = '1'
+		GROUP BY 
+			SUBSTRING(DSALE_NO1,1,1), GM_LARGE, GM_MID, DGOOD_CODE, DDAN_QTY, DDAN, DGRADE, DSALE_DATE  
+		ORDER BY 
+			DSALE_DATE DESC,
+			SUBSTRING(DSALE_NO1,1,1), GM_LARGE, GM_MID, DGOOD_CODE, DDAN_QTY, DDAN, DGRADE
+	</select>
+    
+</mapper>    
+

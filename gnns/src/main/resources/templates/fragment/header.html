@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lagn="ko" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/static/>
+<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강릉농산물도매시장에 오신것을 환영합니다.</title>
+<script> 
+/* 	let user_id = "[[${session.user_id}]]";
+	$("#test").val(user_id); */
+</script>
+
+</head>
+	<th:block layout:fragment="script">
+        <script th:src="@{/static/js/cmmn/common.js}"></script>
+    </th:block>
+    <!--header Fragment 선언-->
+    
+    
+   <div th:fragment="headerFragment">   
+        <div class="wrap">
+        	<div class="w_in">
+        		<!-- header(S) -->
+				<div class="header">
+					<div class="h_in">
+						<div class="hi_top">
+							<a th:href="@{/}" class="main_logo"><img src="/static/img/h_logo.png" alt="헤더로고"></a>
+							
+							<div class="h_search_box">
+							
+								<div class="signin" sec:authorize="isAnonymous()">
+									<a th:href="@{/login/login}" id="login">로그인</a>
+									<a th:href="@{/member/signUp}" id="signUp">회원가입</a>
+									<a th:href="@{/login/adminLogin}" id="adminLogin">관리자로그인</a>
+								</div>
+								<div class="signin" sec:authorize="isAuthenticated()">
+									<a th:href="@{/member/logout}" id="logOut">로그아웃</a>
+									 <span id="spanUserNm" sec:authentication="principal.userNm"></span><span> 님께서 로그인 하셨습니다.</span>
+									 <span sec:authorize="hasRole('ROLE_ADMIN')">
+										 <a th:href="@{/notice/adminList}">관리자메뉴</a>
+									 </span>
+								</div>
+								
+							</div>							
+							
+							<a class="btn_mobile_menu btn_lnb"><img src="/static/img/menu_icon.png" alt="모바일메뉴버튼"></a>
+						</div>
+						<div class="hi_bottom">
+							<ul class="nav">
+								<div class="nav_bg"></div>  
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/company/introduce}">회사소개</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/company/introduce}">인사말</a></li>
+										<li><a th:href="@{/company/overview}">회사개요</a></li> 
+										<li><a th:href="@{/company/history}">연혁</a></li>  
+										<li><a th:href="@{/company/business}">사업실적</a></li>  
+										<li><a th:href="@{/company/ci}">CI소개</a></li>
+										<li><a th:href="@{/company/organization}">조직도</a></li>  
+										<li><a th:href="@{/company/map}">약도</a></li>
+										<li><a th:href="@{/company/disclosure}">경영공시</a></li>  
+										
+									</ul>  
+								</li>  
+		
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/distributor/actioneer}">유통종사자</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/distributor/actioneer}">경매사</a></li>  
+										<li><a th:href="@{/distributor/wholesaler}">중도매인</a></li>
+										<li><a th:href="@{/distributor/trader}">매매참가인</a></li>
+									</ul>  
+								</li> 
+								
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/price/realTimeAucInfo}">실시간 시세정보</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/price/realTimeAucInfo}">실시간 경매정보</a></li>
+										<li><a th:href="@{/price/aucInfo}">전자경매</a></li>    
+										<li><a th:href="@{/price/priceInfoList}">시세정보 조회</a></li> 
+										<li><a th:href="@{/price/distributionList}">유통정보</a></li> 
+									</ul>  
+								</li> 
+		
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/shipper/salesHistory}">출하주 정산정보</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/shipper/salesHistory}">판매내역</a></li>  
+										<li><a th:href="@{/shipper/unpaidList}">미지급내역</a></li> 
+										<li><a th:href="@{/shipper/aggregateList}">실적집계</a></li>  
+									</ul>  
+								</li>
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/wholesale/bidSuccessList}">중도매인 거래정보</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/wholesale/bidSuccessList}">일자별 낙찰명세서</a></li>  
+										<li><a th:href="@{/wholesale/periodList}">기간별 거래원장</a></li> 
+									</ul>  
+								</li>
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/safety/safetyInfo}">농산물 안전성 검사</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/safety/safetyInfo}">안정성 검사란?</a></li>  
+										<li><a th:href="@{/safety/safetySystem}">검사체계</a></li> 
+										<li><a th:href="@{/safety/safetyResult}">검사결과</a></li>
+									</ul>  
+								</li>
+								<li class="navi_set">  
+									<div class="topnav"><a th:href="@{/notice/noticeList}">고객마당</a></div>
+									<ul class="subnav">  
+										<li><a th:href="@{/notice/noticeList}">공지사항</a></li>  
+										<li><a th:href="@{/board/boardList}">게시판</a></li> 
+										<li><a th:href="@{/pds/pdsList}">자료실</a></li>  
+									</ul>  
+								</li>
+								<li><a class="btn_global"><img src="/static/img/menu_icon.png" alt="글로벌메뉴"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" id="msgUp" name="msgUp" th:value="${msgUp}">
+				<!-- header(E) -->
+				
+				<!-- 모바일메뉴(S) -->
+				<div id="lnb" class="mobile_menu">
+					<!-- <div class="dim"></div> -->
+		
+					<div class="mm_top">
+						<div class="m_log" sec:authorize="isAnonymous()">
+							<a th:href="@{/login/login}" id="login">로그인</a>
+							<a th:href="@{/member/signUp}" id="signUp">회원가입</a>
+							<a th:href="@{/login/adminLogin}" id="adminLogin">관리자로그인</a>
+						</div>
+						<div class="m_log" sec:authorize="isAuthenticated()">
+							<a th:href="@{/member/logout}" id="logOut">로그아웃</a>
+							<span sec:authentication="principal.userNm"></span><span> 님께서 로그인 하셨습니다.</span>
+							<span sec:authorize="hasRole('ROLE_ADMIN')">
+								<a th:href="@{/member/management}" id="management">회원관리</a>
+								<a th:href="@{/member/adminUp}" onclick="fn_login()">관리자수정</a>
+							</span>
+						</div>
+						<a class="m_btn_close"><img src="/static/img//m_lnb_close.png" alt="모바일lnb닫기버튼"></a>
+					</div>
+					<ul class="lnb_box">
+					  <li><a>회사소개</a>
+						<ul>
+							<li><a th:href="@{/company/introduce}">· 인사말</a></li>
+							<li><a th:href="@{/company/overview}">· 회사개요</a></li> 
+							<li><a th:href="@{/company/history}">· 연혁</a></li>  
+							<li><a th:href="@{/company/business}">· 사업실적</a></li>  
+							<li><a th:href="@{/company/ci}">· CI소개</a></li>
+							<li><a th:href="@{/company/organization}">· 조직도</a></li>  
+							<li><a th:href="@{/company/map}">· 약도</a></li>
+							<li><a th:href="@{/company/disclosure}">· 경영공시</a></li> 
+						</ul>
+					  </li>
+					  <li><a>유통종사자</a>
+						<ul>
+							<li><a th:href="@{/distributor/actioneer}">· 경매사</a></li>  
+							<li><a th:href="@{/distributor/wholesaler}">· 중도매인</a></li>
+							<li><a th:href="@{/distributor/trader}">· 매매참가인</a></li>
+						</ul>
+					  </li>
+					  <li><a>실시간 시세정보</a>
+						<ul>
+						  <li><a th:href="@{/price/realTimeAucInfo}">· 실시간 경매정보</a></li>
+						  <li><a th:href="@{/price/aucInfo}">· 전자경매</a></li>
+						  <li><a th:href="@{/price/priceInfoList}">· 시세정보 조회</a></li>
+						  <li><a th:href="@{/price/distributionList}">· 유통정보</a></li>
+						</ul>
+					  </li>
+					  <li><a>출하주 정산정보</a>
+						<ul>
+						  <li><a th:href="@{/shipper/salesHistory}">· 판매내역</a></li>
+						  <li><a th:href="@{/shipper/unpaidList}">· 미지급내역</a></li>
+						  <li><a th:href="@{/shipper/aggregateList}">· 실적집계</a></li>
+						</ul>
+					  </li>
+					  <li><a>중도매인 거래정보</a>
+						<ul>
+						  <li><a th:href="@{/wholesale/bidSuccessList}">· 일자별 낙찰명세서</a></li>
+						  <li><a th:href="@{/wholesale/periodList}">· 기간별 거래원장</a></li>
+						</ul>
+					  </li>
+					  <li><a>농산물 안전성 검사</a>
+						<ul>
+						  <li><a th:href="@{/safety/safetyInfo}">· 안성성 검사란?</a></li>
+						  <li><a th:href="@{/safety/safetySystem}">· 검사체계</a></li>
+						  <li><a th:href="@{/safety/safetyResult}">· 검사결과</a></li>
+						</ul>
+					  </li>
+					  <li><a>고객마당</a>
+						<ul>
+						  <li><a th:href="@{/notice/noticeList}">· 공지사항</a></li>
+						  <li><a th:href="@{/board/boardList}">· 게시판</a></li>
+						  <li><a th:href="@{/pds/pdsList}">· 자료실</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div>
+				  <!-- 모바일메뉴(E) -->
+        	</div>
+        </div>
+    </div>
+</html>
+

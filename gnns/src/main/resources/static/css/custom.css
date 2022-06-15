@@ -1,0 +1,161 @@
+@charset "utf-8";
+
+.table_type_trans_board{width:100%; overflow:hidden; margin-top:50px; }
+.table_type_trans_board .tt_head{border-bottom:2px solid #3d3d3d; border-top:2px solid #3d3d3d;  box-sizing:border-box; height:50px; background:#ffffff; line-height:48px;}
+.table_type_trans_board .tt_head li{ text-align:center;   color:#303030; font-size:16px; font-weight:bold; box-sizing:border-box; font-weight:900; float:left;}
+.table_type_trans_board .tt_body{border-bottom:1px solid #dcdcdc; height:48px;  background:#ffffff; line-height:48px; text-align:center!important;}
+.table_type_trans_board .tt_body:hover{background:#fffbe6;}
+.table_type_trans_board .tt_body li{ text-align:center;   color:#303030; font-size:16px;  float:left; box-sizing:border-box; padding:0px 5px;}
+.table_type_trans_board .tt_body li .ico_down{vertical-align:middle;}
+.table_type_trans_board .tt_head .col_title{ text-align:center!important;}
+a.txt_01{display:block; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; height: 48px; line-height: 48px;}
+.views span{display:none;}
+.col_num{width:100px;}
+.col_title{width:calc(100% - 600px); text-align:left!important;}
+.col_file{width:100px;}
+.col_views{width:100px;}
+.col_writer{width:200px}
+.col_day{width:100px} 
+
+
+
+pre{
+    background-color: #ffffff;
+    padding:10px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+.header .h_in{max-width:1310px; margin:0 auto; height:100%; position:relative; text-align: center;}
+
+
+.table_type_trans_action{width:100%; overflow:hidden; position:relative; font-family: "NanumSquare";  }
+.table_type_trans_action ul{width:100%; overflow:hidden;}
+.table_type_trans_action ul .t03_tit{float:left; width:250px; border-top:2px solid #3d3d3d; padding:40px 8px; box-sizing:border-box;}
+.table_type_trans_action ul .t03_tit p{font-size:24px; color:#303030; font-weight:900;}
+.table_type_trans_action ul .t03_box{float:left; width:100%; border-top:2px solid #dcdcdc; margin-left:30px; box-sizing:border-box; padding:40px 20px 40px 0;}
+.table_type_trans_action ul .t03_box.tc{ padding:40px 20px 40px 20px;}
+.table_type_trans_action ul .t03_box .txt_db{font-size:18px; padding-left:115px; position:relative; padding-bottom:33px; line-height:26px;}
+.table_type_trans_action ul .t03_box .txt_db:last-child{padding-bottom:0;}
+.table_type_trans_action ul .t03_box .txt_db span{font-weight:900; margin-right:25px; position:absolute; left:35px;}
+.table_type_trans_action ul .t03_box .txt_di{font-size:18px; position:relative;  line-height:28px; display:inline-block; padding:0 20px;}
+.table_type_trans_action ul .t03_box .img img{width:100%;}
+.table_type_trans_action ul .t03_box .img.slogan{display:inline-block; max-width:378px;}
+.table_type_trans_action ul .t03_box .img.ci_explain{display:inline-block; max-width:635px;}
+
+.table_actioneer{width: 340;}
+.table_actioneer .table_actioneer_space{width: 20px;}
+.table_actioneer .table_actioneer_title{width: 68px; height: 30px;}
+.table_actioneer .table_actioneer_content{width:  236;}
+
+.table_auction_person_img{width:109px; height:141px;}
+.table_auction_title_img{width:56; height:17;}
+ 
+/** 시세정보조회 테이블 */ 
+.table_type_trans_price{width:100%; overflow:hidden; margin-top:50px; }
+.table_type_trans_price .tt_head{border-bottom:2px solid #3d3d3d; border-top:2px solid #3d3d3d;  box-sizing:border-box; height:50px; background:#ffffff; line-height:48px;}
+.table_type_trans_price .tt_head li{ text-align:center;   color:#303030; font-size:16px; font-weight:bold; box-sizing:border-box; font-weight:900; float:left;}
+.table_type_trans_price .tt_body{border-bottom:1px solid #dcdcdc; height:48px;  background:#ffffff; line-height:48px; font-size:0;}
+.table_type_trans_price .tt_body:hover{background:#fffbe6;}
+.table_type_trans_price .tt_body li{ text-align:center;   color:#303030; font-size:16px;  float:left; box-sizing:border-box; padding:0px 5px;}
+.table_type_trans_price .tt_head .col_title{ text-align:center!important;}
+a.txt_01{display:block; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; height: 48px; line-height: 48px;}
+.views span{display:none;}
+.col_itmNm{width:150px;}
+.col_breedNm{width:calc(100% - 1050px);}
+.col_unitQty{width:150px;}
+.col_unit{width:150px;}
+.col_grade{width:150px}
+.col_lowPrice{width:150px} 
+.col_maxPrice{width:150px}
+.col_avgPrice{width:150px}
+.col_no_data{width:1280px}
+
+
+/** 테이블 변형 **/
+.table_trader{width:100%; overflow:hidden; margin-top:50px; }
+.table_trader .tt_head{border-bottom:2px solid #3d3d3d; border-top:2px solid #3d3d3d;  box-sizing:border-box; height:50px; background:#ffffff; line-height:48px;}
+.table_trader .tt_head li{ text-align:center;   color:#303030; font-size:16px; font-weight:bold; box-sizing:border-box; font-weight:900; float:left}
+.table_trader .tt_body{border-bottom:1px solid #dcdcdc; height:48px;  background:#ffffff; line-height:48px; font-size:0;}
+.table_trader .tt_body:hover{background:#fffbe6;}
+.table_trader .tt_body li{ text-align:center;   color:#303030; font-size:16px;  float:left; box-sizing:border-box; padding:0px 5px; min-block-size:50px;}
+.table_trader .tt_head .col_title{ text-align:center!important;}
+a.txt_01{display:block; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; height: 48px; line-height: 48px;}
+.views span{display:none;}
+.col_trader_num{width:150px;}
+.col_company_name{width:calc(100% - 850px); text-align:left!important;}
+.col_name{width:200px;}
+.col_place_phone{width:200px;}
+.col_mobile_phone{width:200px}
+.col_item{width:100px}
+
+/** 테이블 변형 **/
+.table_wholesaler{width:100%; overflow:hidden; margin-top:50px; }
+.table_wholesaler .tt_head{border-bottom:2px solid #3d3d3d; border-top:2px solid #3d3d3d;  box-sizing:border-box; height:50px; background:#ffffff; line-height:48px;}
+.table_wholesaler .tt_head li{ text-align:center;   color:#303030; font-size:16px; font-weight:bold; box-sizing:border-box; font-weight:900; float:left}
+.table_wholesaler .tt_body{border-bottom:1px solid #dcdcdc; height:48px;  background:#ffffff; line-height:48px; font-size:0;}
+.table_wholesaler .tt_body:hover{background:#fffbe6;}
+.table_wholesaler .tt_body li{ text-align:center;   color:#303030; font-size:16px;  float:left; box-sizing:border-box; padding:0px 5px;}
+.table_wholesaler .tt_head .col_title{ text-align:center!important;}
+a.txt_01{display:block; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; height: 48px; line-height: 48px;}
+.col_trader_num{width:150px;}
+.col_company_name{width:calc(100% - 850px); text-align:left!important;}
+.col_name{width:200px;}
+.col_place_phone{width:200px;}
+.col_mobile_phone{width:200px}
+.col_item{width:100px}
+
+
+.search_box.type3{padding:25px; overflow:hidden; height:auto; width:100%; max-width:100%; text-align:center;}
+.search_box.type3 select{margin:0 5px; width:200px; height:44px;}
+.search_box.type3 .btn_search{margin:0 5px; height:44px; line-height:46px;}
+.search_box.type3 .date_from_to{vertical-align:bottom;}
+.search_box.type3 .date_box{width:200px; height:44px; border:1px solid #dcdcdc; box-sizing:border-box; margin:0 5px; vertical-align:bottom;}
+.search_box.type3 .date_box input{width:100%; margin:0; padding:10px;}
+.s_comment{display:block; overflow:hidden;  margin-top:15px;}
+.s_comment p{font-size:16px; line-height:28px;  color:#303030; position:relative; display:inline-block; z-index:999; font-weight:bold;}
+.s_comment p::before{content:'*'; margin-right:5px;}
+.s_comment p::after{content:''; display:inline-block; position:absolute;  left:0;  bottom:7px; width:100%; height:4px; background:#f6d300;  z-index:-1;}
+
+
+/** 미지급내역 테이블 */ 
+.table_type_trans_unpaid{width:100%; overflow:hidden; margin-top:50px; }
+.table_type_trans_unpaid .tt_head{border-bottom:2px solid #3d3d3d; border-top:2px solid #3d3d3d;  box-sizing:border-box; height:50px; background:#ffffff; line-height:48px;}
+.table_type_trans_unpaid .tt_head li{ text-align:center;   color:#303030; font-size:16px; font-weight:bold; box-sizing:border-box; font-weight:900; float:left;}
+.table_type_trans_unpaid .tt_body{border-bottom:1px solid #dcdcdc; height:48px;  background:#ffffff; line-height:48px; font-size:0;}
+.table_type_trans_unpaid .tt_body:hover{background:#fffbe6;}
+.table_type_trans_unpaid .tt_body li{ text-align:center;   color:#303030; font-size:16px;  float:left; box-sizing:border-box; padding:0px 5px;}
+.table_type_trans_unpaid .tt_head .col_title{ text-align:center!important;}
+a.txt_01{display:block; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; height: 48px; line-height: 48px;}
+.views span{display:none;}
+.col_producer{width:320px;}
+.col_settlementAmount{width:320px;}
+.col_payment{width:320px;}
+.col_balance{width:320px}
+.col_no_data{width:1280px}
+
+
+/** 집게현황 테이블 */ 
+.table_type_trans_aggrgate{width:100%; overflow:hidden; margin-top:50px; }
+.table_type_trans_aggrgate .tt_head{border-bottom:2px solid #3d3d3d; border-top:2px solid #3d3d3d;  box-sizing:border-box; height:50px; background:#ffffff; line-height:48px;}
+.table_type_trans_aggrgate .tt_head li{ text-align:center;   color:#303030; font-size:16px; font-weight:bold; box-sizing:border-box; font-weight:900; float:left;}
+.table_type_trans_aggrgate .tt_body{border-bottom:1px solid #dcdcdc; height:48px;  background:#ffffff; line-height:48px; font-size:0;}
+.table_type_trans_aggrgate .tt_body:hover{background:#fffbe6;}
+.table_type_trans_aggrgate .tt_body li{ text-align:center;   color:#303030; font-size:16px;  float:left; box-sizing:border-box; padding:0px 5px;}
+.table_type_trans_aggrgate .tt_head .col_title{ text-align:center!important;}
+a.txt_01{display:block; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; height: 48px; line-height: 48px;}
+.views span{display:none;}
+/* .col_producer{width:calc(100% - 1260px);} */
+.col_producer{width:150px;}
+.col_volume{width:150px;}
+.col_salePrice{width:150px;}
+.col_fees{width:150px;}
+.col_fare{width:150px}
+.col_unload{width:150px} 
+.col_other{width:150px}
+.col_balance{width:calc(100% - 1050px);}
+.col_no_data{width:1280px}
+
+
+.table_type_dl .dl_textarea dl dd textarea2{width:100%; height:100%; border:1px solid #dcdcdc; box-sizing:border-box;}
+.table_type_dl .table_type_dl .zipCode{width:80%;}

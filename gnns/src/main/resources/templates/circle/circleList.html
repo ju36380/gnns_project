@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/circle/circleList.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap"> 
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+					<div class="sub_top">
+						<h2 class="sub_title"><span id="nTitle">원표조회 및 검수</span></h2>
+					</div>
+					<!-- sub상단(E) -->
+					<div class="sub_in">
+					
+						<!-- 레프트메뉴추가(S) -->					
+						<th:block th:replace="nav/adminMenu"></th:block>
+						<!-- 레프트메뉴추가(E) -->	
+						
+						<!-- 검색조건창(S) -->
+						<div class="">
+							<input type="date" name="saleDate" id="nowDate" value="7000-01-01" />
+							
+							<select id="searchSel">
+								<option value="1">과일</option>
+								<option value="2">채소</option>
+								<!--<option value="3">수입</option>-->
+							</select>
+							
+							<div id="rt_sch_line">
+						          <div id="wrapBox">
+						            <input name="saleSeq" id="saleSeq" type="text" class="rt_sch_box" placeholder="원표번호" value=""/>
+						          </div>
+						        
+					      	</div>
+							
+							
+							<input type="text" id="dFarm" placeholder="생산자명" onkeyup="javascript:fn_en();" th:value="${keyword}">
+							<a href="javascript:fn_search();" class="btn_search">검색</a>
+						</div>
+						<!-- 검색조건창(E) -->
+						<input type="hidden" id="preSaleSeq" name="preSaleSeq" value=""/>
+						<input type="hidden" id="nextSaleSeq" name="nextSaleSeq" value=""/>
+						
+						<input type="button" id="preBtn" onclick="javascript:fn_pre()" value="<">
+						<input type="button" id="preNext" onclick="javascript:fn_next()" value=">">
+						
+						<!--<button id="preBtn" onclick="javascript:fn_pre()"> < </button>
+						<button id="nextBtn" onclick="javascript:fn_next()"> > </button>-->
+						
+						<!-- 테이블(S) -->
+						<div class="table_type_trans_board" >
+							<div id="circleSubject"/></div>
+							<!--<input type="text"> -->
+							<input type="button" value="버튼" onclick="javascript:fn_hUp()">
+						</div>
+						<!-- 테이블(E) -->
+						<!-- 테이블(S) -->
+						<div class="table_type_trans_board" >
+							<div id="circleContent"/></div>
+						</div>
+						<!-- 테이블(E) -->
+						
+					</div>
+				
+				</div>
+			</div>
+			
+		</div>
+    </div>
+</html>

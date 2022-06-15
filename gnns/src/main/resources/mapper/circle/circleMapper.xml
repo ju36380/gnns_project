@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.circle.mapper.CircleMapper">
+
+	<!-- <sql id="selectCircleListSearchCondition">
+		<if test='searchType == "subject"'>
+  		AND [제목] LIKE '%'+#{keyword}+'%'	
+  		</if>
+  		<if test='searchType == "contents"'>
+  		AND [내용] LIKE '%'+#{keyword}+'%'
+  		</if>
+	</sql>
+	 -->
+	<select id="getCircleList" parameterType="com.gnns.web.circle.model.CircleModel" resultType="com.gnns.web.circle.model.CircleModel">
+    	SELECT 
+			chul_name AS 'chulName',
+			dfarm as 'dFarm',
+			san_name as 'sanName',
+			gm_name as 'gmName',
+			sbigo as 'dBigo',
+			ddan_qty as 'danQty',
+			dan_name as 'dDan',
+			gra_name as 'graName',
+			dkasu as 'dKasu',
+			dqty as 'dQty'
+		FROM SALEMM_TBL 
+			LEFT JOIN SALEMD_TBL on (sale_date = dsale_date and sale_seq = dsale_seq)
+			LEFT JOIN SCHULM_TBL ON (schul = chul_code)
+			left join ssanji_tbl on (slocal = san_code)
+			left join sgoodm_tbl on (dgood_code = gm_code)
+			left join sdanui_tbl on (ddan = dan_code)
+			left join sgrade_tbl on (dgrade = gra_code)
+		WHERE sale_date = #{searchType} AND sale_seq = #{saleSeq} AND dfarm LIKE '%' +#{keyword}+ '%' AND smejang = #{searchSel}
+    </select>
+    
+    <!-- <select id="getNextSeq" parameterType="com.gnns.web.circle.model.CircleModel" resultType="com.gnns.web.circle.model.CircleModel">
+   
+    	SELECT 
+		DISTINCT TOP(2)
+		   	sale_seq AS 'saleSeq'
+		FROM SALEMM_TBL 
+			LEFT JOIN SALEMD_TBL on (sale_date = dsale_date and sale_seq = dsale_seq)
+		WHERE sale_date = #{searchType} AND dfarm LIKE '%' +#{keyword}+ '%' AND smejang = #{searchSel} AND sale_seq >= #{saleSeq}
+		ORDER BY sale_seq ASC 
+    </select> -->
+    
+    <select id="getOneSeq" parameterType="com.gnns.web.circle.model.CircleModel" resultType="com.gnns.web.circle.model.CircleModel">
+    	SELECT 
+		DISTINCT TOP(1)
+		   	sale_seq AS 'saleSeq'
+		FROM SALEMM_TBL 
+			LEFT JOIN SALEMD_TBL on (sale_date = dsale_date and sale_seq = dsale_seq)
+		WHERE sale_date = #{searchType} AND dfarm LIKE '%' +#{keyword}+ '%' AND smejang = #{searchSel} AND sale_seq >= #{saleSeq}
+    </select> <!-- 현재 원표번호(1개) -->
+    
+    <select id="getNowSeq" parameterType="com.gnns.web.circle.model.CircleModel" resultType="com.gnns.web.circle.model.CircleModel">
+    	SELECT 
+		DISTINCT TOP(2)
+		   	sale_seq AS 'saleSeq'
+		FROM SALEMM_TBL 
+			LEFT JOIN SALEMD_TBL on (sale_date = dsale_date and sale_seq = dsale_seq)
+		WHERE sale_date = #{searchType} AND dfarm LIKE '%' +#{keyword}+ '%' AND smejang = #{searchSel} AND sale_seq >= #{saleSeq}
+    </select> <!-- 현재,다음 원표번호 -->
+    
+    <select id="getNextSeq" parameterType="com.gnns.web.circle.model.CircleModel" resultType="com.gnns.web.circle.model.CircleModel">
+    	SELECT 
+		DISTINCT TOP(1)
+		   	sale_seq AS 'saleSeq'
+		FROM SALEMM_TBL 
+			LEFT JOIN SALEMD_TBL on (sale_date = dsale_date and sale_seq = dsale_seq)
+		WHERE sale_date = #{searchType} AND dfarm LIKE '%' +#{keyword}+ '%' AND smejang = #{searchSel} AND sale_seq > #{saleSeq}
+		ORDER BY sale_seq ASC 
+    </select> <!-- 다음 원표번호 -->
+    
+    <select id="getPreSeq" parameterType="com.gnns.web.circle.model.CircleModel" resultType="com.gnns.web.circle.model.CircleModel">
+    	SELECT 
+		DISTINCT TOP(1)
+		   	sale_seq AS 'saleSeq'
+		FROM SALEMM_TBL 
+			LEFT JOIN SALEMD_TBL on (sale_date = dsale_date and sale_seq = dsale_seq)
+		WHERE sale_date = #{searchType} AND dfarm LIKE '%' +#{keyword}+ '%' AND smejang = #{searchSel} AND sale_seq <![CDATA[ < ]]> #{saleSeq}
+		ORDER BY sale_seq DESC
+    </select> <!-- 이전 원표번호 -->
+ 	
+    
+</mapper>

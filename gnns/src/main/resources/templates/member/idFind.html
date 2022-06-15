@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <!-- <script th:src="@{/static/js/member/idSearch.js}"></script> -->
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+			<div class="sub_contents sign">
+				<div class="sub_in sign">
+					
+					<!-- 아이디 확인(S) -->
+					<div class="intro sign">
+						<h4 class="int_tit">아이디 확인</h4>
+						<div class="member_info">
+							<form name="frm" id="frm" action="/member/searchId" method="post">
+							<ul class="m_input">
+								<li>
+									<div class="mi_input">
+										<label for="name">아이디</label>
+										<input type="text" id="serId" name="serId" th:value="${serId}" readonly>
+									</div>
+								</li>
+							</ul>
+							
+							</form>
+							
+							<div class="btn_box tc btn_2">
+								<a href="/login/login" class="btn_type_01 gray cancel">로그인페이지</a>
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+</html>

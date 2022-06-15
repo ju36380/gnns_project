@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">약도</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav01"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+					<div class="sub_in">
+						<!-- 약도(S) -->
+						<div class="box_border_02">
+							<a href="https://map.kakao.com/?urlX=922715&urlY=1181256&itemId=10121292" target="_blank">
+							<img class="map pc" src="/static/img/map_pc.png" alt="PC버전약도">
+							<img class="map mobile" src="/static/img/map_mobile.png" alt="모바일버전약도">
+							</a>
+						</div>
+						<div class="address_big">
+							<h2>강원 강릉시 유산로 60 강릉농산물도매시장</h2>
+							<p><span class="bold mr10">TEL</span> 033-644-4654</p>
+							<p><span class="bold mr10">FAX</span> 033-644-4860</p>
+						</div>
+						<!-- 약도(E) -->
+					</div>
+				</div>
+				<!-- sub-contents(E) -->	
+			</div>
+		</div>
+		
+    </div>
+</html>

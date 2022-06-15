@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.cmmn.mapper.CmmnMapper">
+ 	<select id="getItemList" parameterType="com.gnns.web.common.model.ItemModel" resultType="com.gnns.web.common.model.ItemModel">
+    	SELECT
+    		  PUM_CODE
+    		, PUM_NAME
+    	FROM 
+    		SPUMOK_TBL
+    	WHERE
+    	<if test='searchType=="popup"'>
+    		PUM_NAME LIKE '%'+#{pumName}+'%'
+    	</if>
+    	<if test='searchType!="popup"'>
+    		PUM_NAME = #{pumName}
+    	</if>
+    </select>
+    <select id="getZipcodeList" parameterType="com.gnns.web.common.model.ZipcodeModel" resultType="com.gnns.web.common.model.ZipcodeModel">
+    	SELECT
+    		  ZIPCODE
+    		, SIDO
+    		, GUGUN
+    		, DONG
+    		, BUNJI
+    	FROM 
+    		WEB_POST
+    	WHERE
+    	DONG LIKE '%'+#{searchKey}+'%'
+    	ORDER BY ZIPCODE
+    </select>
+</mapper>    

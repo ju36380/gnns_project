@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/safety/safetyAdminList.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">검사결과</h2>
+
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in">	
+				
+					<!-- 레프트메뉴추가(S) -->					
+					<th:block th:replace="nav/adminMenu"></th:block>
+					<!-- 레프트메뉴추가(E) -->
+						
+					<!-- 검색조건창(S) -->	
+					<div class="search_box">
+						<select id="searchSel">
+							<option value="subject">제목</option>
+							<option value="contents">내용</option>
+						</select>
+						<label for="searchSel"></label>
+						<input type="text" id="searchInp" placeholder="검색어를 입력하세요" onkeyup="javascript:fn_search();" th:value="${keyword}"><label for="searchInp"></label>
+						<a href="javascript:fn_cilck();" class="btn_search">검색</a>
+					</div>
+					<!-- 검색조건창(E) -->
+					
+					<!-- 테이블(S) -->
+					<div class="table_type_trans_board" >
+						<div id="safetyList"/>
+					</div>
+					<!-- 테이블(E) -->
+					
+					<!-- 버튼(S) -->
+					<div class="btn_box">
+						<div class="fr">
+							<a href="/safety/safetyAdminWrite" class="btn_type_01 gray write">글쓰기</a>
+						</div>
+					</div>
+					<!-- 버튼(E) -->
+	
+	
+					<!-- 페이지박스(S) -->
+					<div class="paging_box" id="divPaging">
+					</div>
+					<input type="hidden" id="currentPage" th:value="${page}">
+					<!-- 페이지박스(E) -->				
+	
+					</div>
+				
+					<input type="hidden" id="msg" th:value="${msg}">
+				</div>
+				<!-- sub-contents(E) -->
+				</div>	
+			</div>
+		</div>
+		
+    </div>
+</html>

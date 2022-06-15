@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/wholesale/bidSuccessList.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">일자별 낙찰명세서</h2>
+	
+					<!-- nav -->
+        			<th:block th:replace="nav/nav05"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in">
+
+					<!-- 검색조건창(S) -->
+					<div class="search_box type2">
+						<label for="searchSel"></label>
+						<div class="date_from_to">
+							<div class="date_box">
+								<input type="text" class="datepicker" name="schDate" id="schDate">
+							</div>
+						</div>
+						<a href="#" class="btn_search" onclick="javascript:fn_search();">검색</a>
+					</div>
+					<!-- 검색조건창(E) -->
+
+					<!-- 개인정보(S) -->
+					<ul class="member_about mt30">
+						<li><span>일자 : </span><span id="bidDate"></span></li>
+						<li><span>중도매인(매참인)번호 : </span><span id="salerCd" sec:authentication="principal.salerCd"></span></li>
+						<li><span>이름 : </span><span sec:authentication="principal.userNm"></span></li>
+					</ul>
+					<!-- 개인정보(E) -->
+
+					<!-- 타이틀(S) -->
+					<div class="title_box mt50">
+						<div class="fl">
+							<a href="#" class="btn_type_02 print" onclick="javascript:print();">인쇄하기</a>
+						</div>
+						<div class="fr">
+							<span class="txt_unit">(단위:원)</span>
+						</div>
+					</div>
+					<!-- 타이틀(E) -->
+
+					<!-- 테이블01(S) -->
+					<div class="table_type_01 mt10" id="listArea">
+					</div>
+					<!-- 테이블01(E) -->
+
+					<!-- 장부(S) -->
+					<div class="chart mt50" id="sumArea">
+					</div>
+					<!-- 장부(E) -->
+
+				</div>
+			</div>
+				<!-- sub-contents(E) -->
+			</div>
+		</div>
+		
+    </div>
+</html>

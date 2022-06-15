@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/board/boardPass.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">게시판</h2>
+			
+					<!-- nav -->
+        			<!-- <th:block th:replace="nav/nav07"></th:block> -->
+				</div>
+			<!-- sub상단(E) -->
+				<div class="sub_in">
+					<form name="frm" id="frm" action="/board/boardPassDe" method="post">
+					<!--  글쓰기테이블(S) -->
+					<div class="table_type_dl">
+						
+						<div class="dl_title dl_devide3">							
+							<dl>
+								<dt>비밀번호</dt>
+								<dd><input type="password" id="pw" name="passWd"><label for="pw"></label></dd>
+							</dl>	
+						</div>
+						
+					</div>
+					<input type="hidden" th:value="${boardSeq}" name="boardSeq"/>
+					<input type="hidden" th:value="${boardType}" name="boardType"/>
+					<!-- 글쓰기테이블(E) -->
+					</form>
+					<!-- 버튼(S) -->
+					<div class="btn_box tc btn_2">
+						<a th:href="@{boardView(boardSeq=${boardSeq})}" class="btn_type_01 gray cancel">취소</a>
+						<a href="javascript:void(0);" onclick="javascript:fn_boardRegist();" class="btn_type_01 black confirm">확인</a>
+					</div>
+					<!-- 버튼(E) -->
+
+				</div>
+			</div>
+			<!-- sub-contents(E) -->
+
+	
+			</div>
+		</div>
+		<input type="hidden" id="msg" th:value="${msg}">
+    </div>
+</html>

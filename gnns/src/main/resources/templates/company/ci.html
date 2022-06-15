@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">CI소개</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav01"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+					<div class="sub_in">
+						<!-- CI소개(S) -->
+						<div class="table_type_trans03">
+							<ul>
+								<li class="t03_tit"><p>사훈</p></li>
+								<li class="t03_box tc">
+									<p class="txt_di">1. 신뢰와 화합</p>
+									<p class="txt_di">2. 자율적인 책임</p>
+									<p class="txt_di">3. 생산자에게 희망을</p>
+									<p class="txt_di">4. 인간존중의 가치창조</p>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>슬로건</p></li>
+								<li class="t03_box tc">
+									<span class="img slogan"><img src="/static/img/slogan.png" alt="슬로건"></span>
+								</li>
+							</ul>
+							<ul>
+								<li class="t03_tit"><p>연도별 거래실적</p></li>
+								<li class="t03_box tc">
+									<span class="img ci_explain"><img src="/static/img/ci_explain.png" alt="CI소개"></span>
+								</li>
+							</ul>
+						</div>
+						<!-- CI소개(E) -->
+							
+					</div>
+				</div>
+				<!-- sub-contents(E) -->	
+			</div>
+		</div>
+		
+    </div>
+</html>

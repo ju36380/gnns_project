@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">매매참가인</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav02"></th:block>
+				</div>
+					<!-- sub상단(E) -->
+									<!-- sub상단(E) -->
+				<div class="sub_in">
+
+					<!-- 매매참가인(S) -->
+					<div class="table_type_trans04 business" style="margin-bottom:200px;">
+						<ul>
+							<li class="t04_tit"><p>매매참가인</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:10%;">
+										<col style="width:20%;">
+										<col style="width:15%;">
+										<col style="width:15%;">
+										<col style="width:*;">
+										<col style="width:15%;">
+									</colgroup>
+									<thead>
+									<tr> 
+									  <th>중도매인번호</th>
+									  <th>상호</th>
+									  <th>이름</th>
+									  <th>점포전화번호</th>
+									  <th>휴대폰</th>
+									  <th>취급품목</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr> 
+									  <td>505</td>
+									  <td>중산농산</td>
+									  <td>이채헌</td>
+									  <td>&nbsp;</td>
+									  <td>010-5305-4550</td>
+									  <td>채소류</td>
+									</tr>
+													   <tr> 
+									  <td>514</td>
+									  <td>길여울농산</td>
+									  <td>김양희</td>
+									  <td>&nbsp;</td>
+									  <td>010-6370-9168</td>
+									  <td>채소류</td>
+									</tr>
+													   <tr> 
+									  <td>515</td>
+									  <td>정현농산</td>
+									  <td>한숙자</td>
+									  <td>&nbsp;</td>
+									  <td>017-383-3677</td>
+									  <td>채소류</td>
+									</tr>
+									<!--<tr> 
+									  <td>508</td>
+									  <td>강릉원예농산</td>
+									  <td>장예순</td>
+									  <td>&nbsp;</td>
+									  <td>010-3391-9096 </td>
+									  <td>채소류</td>
+									</tr>-->
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+					</div>
+					<!-- 매매참가인(E) -->
+				</div>
+			</div>
+			<!-- sub-contents(E) -->
+					<!-- 테이블(E) -->
+			</div>
+		</div>
+    </div>
+</html>

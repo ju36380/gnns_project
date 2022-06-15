@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+       <script th:src="@{/static/js/compost/compostUpdate.js}"></script>
+    </th:block>
+
+	<div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+					<div class="sub_top">
+						<h2 class="sub_title"><span id="nTitle">부산물퇴비지원 수정</span></h2>
+					</div>
+						<!-- sub상단(E) -->
+					<div class="sub_in">
+					
+						<!-- 레프트메뉴추가(S) -->					
+						<th:block th:replace="nav/adminMenu"></th:block>
+						<!-- 레프트메뉴추가(E) -->
+						
+						<!-- 상세테이블(S) -->
+						<div class="table_type_detail">
+							<form name="frm" id="frm" action="/compost/compostUp" method="post">
+								<table>
+									<caption></caption>
+									<colgroup>
+										<col width="15%">
+										<col width="35%">
+										<col width="15%">
+										<col width="35%">
+									</colgroup>
+									<thead>
+										<tr class="head_member">
+											<td class="text_subject">이름</td>
+											<td class="text_content" colspan="3" th:text="${compostDtl.name}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">전화번호</td>
+											<td class="text_content" th:text="${compostDtl.phoneNum}"></td>
+											<td class="text_subject">휴대폰</td>
+											<td class="text_content" th:text="${compostDtl.mobilePhone}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">주소</td>
+											<td class="text_content" colspan="3" th:text="'[ '+${compostDtl.zipCode}+' ] '+${compostDtl.address}+' '+${compostDtl.subAddress}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">사용일시</td>
+											<td class="text_content" th:text="${reservationDate}"></td>
+											<td class="text_subject">등록일</td>
+											<td class="text_content" th:text="${regDt}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">출하 품목</td>
+											<td class="text_content" colspan th:text="${compostDtl.breedNm}+' ( '+${compostDtl.breedCode}+' )'"></td>
+										</tr>
+										<tr  class="head_member">
+											<td class="text_subject m_height border_bo">필요량</td>
+											<td class="text_content border_bo" colspan='3' th:text="${compostDtl.shipmentIssue}"></td>
+										</tr>
+										<tr class="border_bo">
+											<td class="height_modi border_bo"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">접수자명</td>
+											<td class="text_content">
+												<input type="text" name="receiptName" th:value="${compostDtl.receiptName}" maxlength='5'>
+											</td>
+											<td class="text_subject">접수등록일</td>
+											<td class="text_content" th:text="${receiptDate}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">접수상태</td>
+											<td class="text_content">
+												<select name="receiptStatus" class="mem_sel">
+													<option value="c" th:selected="${compostDtl.receiptStatus}=='c'">완료</option>
+													<option value="R" th:selected="${compostDtl.receiptStatus}=='R'">접수중</option>
+												</select>
+											</td>
+											<td class="text_subject">접수방법</td>
+											<td class="text_content">
+												<select name="receiptMethod" class="mem_sel_m">
+													<option value="전화통화" th:selected="${receiptMethod}=='전화통화'">전화통화</option>
+													<option value="메일발송" th:selected="${receiptMethod}=='메일발송'">메일발송</option>
+													<option value="상담"  th:selected="${receiptMethod}=='상담'">상담</option>
+												</select>
+											</td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject m_height border_bo">접수내용</td>
+											<td class="text_content border_bo" colspan='3'>
+												<textarea id="area_id" th:value="${compostDtl.receiptContent}" name="receiptContent" th:text="${compostDtl.receiptContent}"></textarea>
+											</td>
+										</tr>
+									</thead>
+								</table>
+								<input type="hidden" name="seq" th:value="${compostDtl.seq}">
+								<div id="btn_id">
+									<button type="submit">수정</button>
+									<button type="button" onclick="javascript:history.back();">취소</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+    </div>
+</html>

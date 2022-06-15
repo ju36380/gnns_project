@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.shipper.mapper.ShipperMapper">
+
+	<select id="getFirstSalesSeq" parameterType="com.gnns.web.shipper.model.SalesHistModel" resultType="string">
+    	SELECT
+    		MIN(SALE_SEQ)
+    	FROM
+    		SALEMM_TBL
+    	WHERE SALE_DATE = #{schDate}
+    	<if test='saleSeq != "null" and saleSeq != ""'> <!-- 2022-01-06 추가 -->
+    		AND SALE_SEQ = #{saleSeq}
+    	</if>
+    	AND (SCHUL= #{shipperCode} OR SCHUL_P=#{shipperCode})	
+    </select>
+    
+    <select id="getNextSalesSeq" parameterType="com.gnns.web.shipper.model.SalesHistModel" resultType="string">
+    	SELECT
+    		MIN(SALE_SEQ)
+    	FROM SALEMM_TBL
+    	WHERE SALE_DATE = #{schDate}
+    	AND SALE_SEQ >  #{saleSeq}
+    	AND (SCHUL= #{shipperCode} OR SCHUL_P=#{shipperCode})
+    </select>
+    
+     <select id="getPrevSalesSeq" parameterType="com.gnns.web.shipper.model.SalesHistModel" resultType="string">
+    	SELECT
+    		MAX(SALE_SEQ)
+    	FROM SALEMM_TBL
+    	WHERE SALE_DATE = #{schDate}
+    	AND SALE_SEQ <![CDATA[<]]> #{saleSeq}
+    	AND (SCHUL= #{shipperCode} OR SCHUL_P=#{shipperCode})
+    </select>
+    
+    <select id="getSalesHistoryList" parameterType="com.gnns.web.shipper.model.SalesHistModel" resultType="com.gnns.web.shipper.model.SalesHistModel">
+		SELECT
+				  DFARM	AS PRODUCER   							/*생산자*/
+				, GM_NAME AS BREED_NAME							/*품종*/
+				, CONVERT(NUMERIC(7,1), DDAN_QTY) AS UNIT_QTY	/*단량*/
+				, DAN_NAME AS UNIT 								/*단위*/
+				, GRA_NAME AS GRADE 							/*등급*/
+				, ISNULL(DKASU,0) AS DKASU 						/*과수*/
+			    , DQTY AS QTY									/*수량*/
+			    , ISNULL(DCOST,0) AS UNIT_PRICE					/*단가*/
+			    , ISNULL(DQTY*DCOST,0) AS SALES_PRICE			/*판매액*/
+				, DAMER_CODE1	AS WHOLESALER					/*중도매인*/
+				, ISNULL(DSSR,0) AS FEES						/*수수료*/
+				, ISNULL(DUNIM,0) AS FARE						/*운임*/
+				, ISNULL(DHAYOK,0) AS UNLOADING_FEE				/*하역비*/
+				, ISNULL(DDUST,0)+ISNULL(DSUNDO,0)+ISNULL(DGITA_GONG,0) AS OTHER_DEDUCTIONS	 	/*기타공제*/
+				, (ISNULL(DQTY*DCOST,0))-(ISNULL(DSSR,0)+ISNULL(DUNIM,0)+ISNULL(DHAYOK,0)+ISNULL(DDUST,0)+ISNULL(DSUNDO,0)+ISNULL(DGITA_GONG,0)) AS BALANCE   /*차인잔액*/
+		FROM 	SALEMD_TBL 
+		LEFT JOIN 
+		 	SGOODM_TBL 
+		ON (DGOOD_CODE = GM_CODE)
+		LEFT JOIN 
+			SGRADE_TBL 
+		ON (DGRADE = GRA_CODE)
+		LEFT JOIN
+			SDANUI_TBL 
+		ON (DDAN = DAN_CODE)
+		WHERE 	DSALE_DATE = #{schDate} 
+		AND	DSALE_SEQ = #{saleSeq}
+		ORDER BY  DSALE_DATE, DSALE_SEQ, DSALE_NO1, CONVERT(INT,DSALE_NO1)
+    </select>
+    
+    <select id="getUnpaidList" parameterType="com.gnns.web.shipper.model.UnpaidModel" resultType="com.gnns.web.shipper.model.UnpaidModel">
+		SELECT PMFARM						AS PRODUCER 			/*생산자*/ 
+			, SUM(ISNULL(RM.PMJUNGSAN, 0))	AS SETTLEMENT_AMOUNT    /*정산액*/ 
+			, SUM(ISNULL(RESULT.JIAMT, 0))	AS PAYMENT				/*지불액*/
+			, SUM(ISNULL(RM.PMJUNGSAN, 0) - ISNULL(RESULT.JIAMT, 0)) AS BALANCE	/*현잔액*/
+		FROM
+		(
+			SELECT *
+			FROM SPAYRM_TBL RM
+			WHERE (RM.PMJIMAGAM <![CDATA[>]]> #{schDate} OR RM.PMJIMAGAM = '' )
+			AND RM.PMSALE_DATE <![CDATA[<=]]> #{schDate}
+			AND (RM.PMCHUL_CODE=#{shipperCode} OR RM.PMFARM_CODE=#{shipperCode})
+		) RM LEFT OUTER JOIN
+		(
+			SELECT 	  
+				  RM.PMSALE_DATE
+				, RM.PMSALE_SEQ
+				, RM.PMSALE_NO1
+				, SUM(ISNULL(RD.PDJI_AMT,0)) AS JIAMT
+				, MAX(ISNULL(BK.BANK_NAME, '')) AS BANK_NAME
+				, MAX(ISNULL(RD.PDOWNER, '')) AS PDOWNER
+				, MAX(ISNULL(RD.PDACC, '')) AS PDACC
+		 	FROM SPAYRM_TBL RM
+			INNER JOIN SPAYRD_TBL RD
+			ON RM.PMSALE_DATE = RD.PDSALE_DATE 
+		   	AND RM.PMSALE_SEQ  = RD.PDSALE_SEQ 
+		   	AND RM.PMSALE_NO1  = RD.PDSALE_NO1
+			LEFT OUTER JOIN SBANKI_TBL BK
+			ON RD.PDBANK = BK.BANK_CODE
+			WHERE (RM.PMJIMAGAM <![CDATA[>]]> #{schDate} OR ISNULL(RM.PMJIMAGAM, '') = '' )
+		   	AND RD.PDJI_DATE <![CDATA[<=]]> #{schDate}
+		   	AND RM.PMSALE_DATE <![CDATA[<=]]> #{schDate}
+		   	AND (RM.PMCHUL_CODE = #{shipperCode} OR RM.PMFARM_CODE = #{shipperCode})
+			GROUP BY RM.PMSALE_DATE, RM.PMSALE_SEQ, RM.PMSALE_NO1
+		) RESULT
+		ON 
+			RM.PMSALE_DATE = RESULT.PMSALE_DATE
+		AND RM.PMSALE_SEQ = RESULT.PMSALE_SEQ
+		AND RM.PMSALE_NO1  = RESULT.PMSALE_NO1
+		LEFT OUTER JOIN SCHULM_TBL LM
+		ON RM.PMCHUL_CODE = LM.CHUL_CODE
+		GROUP BY PMFARM
+		ORDER BY PMFARM
+    </select>
+    
+   <select id="getAggregateList" parameterType="com.gnns.web.shipper.model.AggregateModel" resultType="com.gnns.web.shipper.model.AggregateModel">
+    	SELECT
+			  DFARM			AS PRODUCER /*생산자*/
+			, SUM(CONVERT(NUMERIC(7,1), DDAN_QTY*DQTY*ISNULL(DAN_X,1)))	AS VOLUME /*물량(KG)*/
+			, SUM(ISNULL(DQTY,0)*ISNULL(DCOST,0)) AS SALES_PRICE		/*판매액*/
+			, SUM(ISNULL(DSSR,0)) AS FEES	/*수수료*/
+			, SUM(ISNULL(DUNIM,0)) AS FARE	/*운임*/
+			, SUM(ISNULL(DHAYOK,0)) AS UNLOADING_FEE	/*하역비*/
+			, SUM(ISNULL(DDUST,0)+ISNULL(DSUNDO,0)+ISNULL(DGITA_GONG,0)) AS OTHER_DEDUCTIONS	/*기타공제*/
+			, SUM((DQTY*DCOST)-(ISNULL(DSSR,0)+ISNULL(DUNIM,0)+ISNULL(DHAYOK,0)+ISNULL(DDUST,0)+ISNULL(DSUNDO,0)+ISNULL(DGITA_GONG,0))) AS BALANCE/*차인잔액*/
+		FROM SALEMM_TBL 
+		LEFT JOIN SALEMD_TBL 
+		ON (SALE_DATE=DSALE_DATE AND SALE_SEQ=DSALE_SEQ)
+		LEFT JOIN SDANUI_TBL ON (DDAN = DAN_CODE)
+		LEFT JOIN SCHULM_TBL ON (SCHUL = CHUL_CODE)
+		WHERE 	SALE_DATE BETWEEN #{schStrDate} AND #{schEndDate}
+		AND	(SCHUL = #{shipperCode}
+		OR	SCHUL_P = #{shipperCode})
+		GROUP BY DFARM
+		ORDER BY  DFARM
+    </select>
+</mapper>    
+

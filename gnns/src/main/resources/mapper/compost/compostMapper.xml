@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.compost.mapper.CompostMapper">
+
+	<sql id="selecCompostListSearchCondition">
+		<if test='keyword!=""'>
+			<if test='searchType == "all"'>
+				
+			</if>
+			<if test='searchType == "nm"'>
+				AND [이름] LIKE '%'+#{keyword}+'%'
+			</if>
+			<if test='searchType == "bn"'>
+				AND [예약품목명] LIKE '%'+#{keyword}+'%'
+			</if>
+			<if test='searchType == "mp"'>
+				AND [휴대폰] LIKE '%'+#{keyword}+'%'
+			</if>
+		</if>
+	</sql>
+
+	<select id="getCompostList"
+		parameterType="com.gnns.web.compost.model.CompostModel"
+		resultType="com.gnns.web.compost.model.CompostModel">
+		SELECT
+			  TOP (#{psize}) [일련번호] AS SEQ
+			, [이름] AS NAME
+			, [이메일] AS EMAIL
+			, CONVERT(CHAR(10), [등록일자], 23) as REG_DTTM
+			, [예약품목명] AS BREED_NM
+			, [휴대폰] AS MOBILE_PHONE
+			, CASE WHEN UPPER([접수FLAG]) ='C' THEN '완료' ELSE '접수중' END AS RECEIPT_STATUS
+			, (
+				SELECT COUNT([일련번호]) FROM WEB_RESERVE
+				WHERE 1=1
+				<include refid="selecCompostListSearchCondition" />
+				)-(ROW_NUMBER() OVER(ORDER BY [일련번호] DESC)+(#{psize}*(#{page}-1)))+1
+			AS RNUM
+		FROM WEB_RESERVE
+		WHERE [일련번호] NOT IN (
+			SELECT
+				TOP (#{psize}*(#{page}-1)) [일련번호] FROM WEB_RESERVE
+			WHERE 1=1
+			<include refid="selecCompostListSearchCondition" />
+			ORDER BY [등록일자] DESC)
+		<include refid="selecCompostListSearchCondition" />
+		ORDER BY [등록일자] DESC
+	</select>
+
+	<select id="getCompostListCount" parameterType="com.gnns.web.compost.model.CompostModel" resultType="com.gnns.web.compost.model.CompostModel">
+		SELECT /*getCompostListCount [전체건수]*/
+			  COUNT(*) AS TOT_CNT
+			, CAST(CEILING(CAST(COUNT(*) AS FLOAT)/10) AS INT) AS TOT_PAGE
+		FROM WEB_RESERVE
+		WHERE
+			1=1
+		<include refid="selecCompostListSearchCondition" />
+	</select>
+	
+	<insert id="insertCompost" parameterType="com.gnns.web.compost.model.CompostModel">
+		INSERT INTO WEB_RESERVE
+		(
+			  [이름]
+			, [이메일]
+			, [주민번호]
+			, [전화번호]
+			, [휴대폰]
+			, [우편번호]
+			, [주소1]
+			, [주소2]
+			, [출하예약일]
+			, [출하내용]
+			, [등록일자]
+			, [예약품목명]
+			, [예약품목코드]
+			, [접수FLAG]
+		)
+		VALUES
+		(
+			  #{name}
+			, #{email}
+			, '-'
+			, #{phoneNum}
+			, #{mobilePhone}
+			, #{zipCode}
+			, #{address}
+			, #{subAddress}
+			, #{reservationDate}
+			, #{shipmentIssue}
+			, GETDATE()
+			, #{breedNm}
+			, #{breedCode}
+			, 'R'
+		)
+	</insert>
+	
+	<select id="getCompostRead" parameterType="com.gnns.web.compost.model.CompostModel" resultType="com.gnns.web.compost.model.CompostModel">
+        SELECT
+			[일련번호] AS SEQ,
+			[이름] AS name,
+			[이메일] AS email,
+			[주민번호] AS regNum,
+			[전화번호] AS phoneNum,
+			[휴대폰] AS mobilePhone,
+			[우편번호] AS zipCode,
+			[주소1] AS address,
+			[주소2] AS subAddress,
+			[출하예약일] AS reservationDate,
+			[출하내용] AS shipmentIssue,
+			[등록일자] AS regDt,
+			[예약품목명] AS breedNm,
+			[예약품목코드] AS breedCode,
+			[접수FLAG] AS receiptStatus,
+			[접수자] AS receiptName,
+			[접수내용] AS receiptContent,
+			[접수방법] AS receiptMethod,
+			[접수일시] AS receiptDate
+		FROM WEB_RESERVE
+		WHERE [일련번호] =#{seq}
+    </select>
+    
+    <update id="updateCompost">
+    	UPDATE WEB_RESERVE 
+		SET [접수자] =#{receiptName},
+			[접수방법] =#{receiptMethod},
+			[접수FLAG] =#{receiptStatus},
+			[접수내용] =#{receiptContent},
+			<if test='receiptStatus == "c"'>
+				<if test='receiptDate == null'>
+					[접수일시] = getdate()
+				</if>
+				<if test='receiptDate != null'>
+					[접수일시] = #{receiptDate}
+				</if>
+			</if>
+			<if test='receiptStatus == "R"'>
+				[접수일시] = NULL
+			</if>
+		WHERE [일련번호] =#{seq}
+    </update>
+	
+</mapper>    

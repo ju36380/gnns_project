@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/error/access.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+	
+					<!-- sub상단(E) -->
+					<div class="sub_in">
+						<!-- 실시간경매정보(S) -->
+						<div class="table_type_trans04 business" style="margin-bottom:200px;">
+							<ul>
+								<li class="t04_box" style="width: 100%">
+									<table>										
+										<thead>
+											<tr> 
+												<th><p class="p_01 bold mt50 mb10" id="comment">만 접근 가능합니다.</p></th>
+											</tr>
+										</thead>	
+									</table>
+								</li>
+							</ul>
+						</div>
+						<!-- 실시간경매정보(E) -->
+					</div>
+					<!-- sub-contents(E) -->
+				</div>	
+			</div>
+		</div>
+		
+    </div>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/price/priceInfoList.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">전자경매</h2>
+	
+					<!-- nav -->
+        			<th:block th:replace="nav/nav03"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in">
+					<!-- 코멘트(S) -->
+					<div class="tit_comment">
+						<p>"전자경매는 유통거래의공정성과 투명성 확보로 신뢰성을제고하고 가격정보의실시간 제공을 통해 유통정보의신속한 서비스를 제공합니다."</p>
+					</div>
+					<!-- 코멘트(E) -->
+
+					<!-- 전자경매(S) -->
+					<div class="table_type_trans04">
+						<ul>
+							<li class="t04_tit"><p>1.<br/>전자경매의 정의</p></li>
+							<li class="t04_box ver2">
+								<p class="p_01 bold">현재의 수지식 경매과정을 응찰에서부터 낙찰 및 기록에 이르기 까지의 전과 정에 걸쳐 전자화·자동화 한 것을 말함</p>
+								<p class="p_02 dot">고정식.이동식, 유선식.무선식 등 다양한 현태로 구현 가능.</p>
+   								<p class="p_02 dot">정부에서 확대 추진하고자하는 전자경매는, 무선응찰기와 이동식경매대를 사용하는 방식으로서 수지식 경매과정을 그대로 재현한 경매입니다.</p>
+							</li>
+						</ul>
+						<ul>
+							<li class="t04_tit"><p>2.<br/>왜 전자경매를 하는가?</p></li>
+							<li class="t04_box ver2">
+								<p class="p_02 dot">경매과정의 공정성, 투명성을 높일 수 있습니다.</p>
+								<p class="p_02 dot">경락정보 실시간 전파 기반이 구축됩니다.</p>
+								<p class="p_02 dot">정보화를 통해 도매시장의 효율성을 제고할 수 있습니다.<br/>
+								→ 고객의 편익을 도모하고 도매시장의 경쟁력을 향상</p>
+							</li>
+						</ul>
+						<ul>
+							<li class="t04_tit"><p>3.<br/>향후 추진 방향</p></li>
+							<li class="t04_box ver2">
+								<p class="p_02 dot">인터넷을 통해 경락정보가 실시간으로 제공됩니다.
+   								→ 안방에서도 경락가격을 확인할 수 있습니다.</p>
+								<p class="p_02 dot">전자경매 우수 법인에 인센티브를 부여해 나갑니다.
+   								→ 출하 장려금은 출하금의 0.3~0.5% 가산지원</p>
+							</li>
+						</ul>
+						<ul>
+							<li class="t04_tit"><p>4.<br/>수지식과 전자식경매 비교</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:20%;">
+										<col style="width:40%;">
+										<col style="width:40%;">
+									</colgroup>
+									<thead>
+										<tr> 
+											<th>구분</th>
+											<th>수지식</th>
+											<th>전자식</th>
+										</tr>
+									</thead>										
+									<tbody>
+										<tr> 
+											<th>경매과정</th>
+											<td><img src="/static/img/table_img_01.png" alt="표이미지1"></td>
+											<td><img src="/static/img/table_img_02.png" alt="표이미지2"></td>
+										</tr>
+										<tr> 
+											<th>경매시작</th>
+											<td>말</td>
+											<td>벨, 점등</td>
+										</tr>
+										<tr> 
+											<th>가격제시</th>
+											<td>손가락</td>
+											<td>응찰기</td>
+										</tr>
+										<tr> 
+											<th>가격판단</th>
+											<td>여러사람 손가락</td>
+											<td>모니터</td>
+										</tr>
+										<tr> 
+											<th>낙찰</th>
+											<td>말</td>
+											<td>버튼</td>
+										</tr>
+										<tr class="tr_last"> 
+											<th>차이점</th>
+											<td colspan="2">시작과 낙찰에서는 별 차이가 없으나 가격제시, 가격판단이 크게 다름</td>
+										</tr>
+									</tbody>	
+								</table>
+							</li>
+						</ul>
+						<ul class="mt50">
+							<li class="t04_tit"><p>5.<br/>내용 운영상 차이</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:20%;">
+										<col style="width:40%;">
+										<col style="width:40%;">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>구분</th>
+											<th>수지식</th>
+											<th>전자식</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										<th>경매절차</th>
+										<td>반입량 확인 후 경매하면서 원표를 작성한 후 자료입력하여 정산서 발급</td>
+										<td>반입량을 확인한 후 자료를 입력한 후 경매를 하면 자동으로 정산서 발급</td>
+										</tr>
+										<tr>
+										<th>소요인력</th>
+										<td>3명</td>
+										<td>2명</td>
+										</tr>
+										<tr>
+										<th>낙찰자결정</th>
+										<td> - 최고가격 제시자<br>
+											- 경매사 실수(또는 고의)로 최고 가격<br>
+											&nbsp;&nbsp;&nbsp;제시자에게 낙찰되지 않는 경우 있음 </td>
+										<td> - 최고가격 제시자<br>
+											- 최고가격 제시자에게 낙찰되지 않는<br>
+											&nbsp;&nbsp;&nbsp;경우 없음 </td>
+										</tr>
+										<tr>
+										<th>소요시간</th>
+										<td>건당 약 22초</td>
+										<td>건당 약 14초 (단축가능)</td>
+										</tr>
+										<tr>
+										<th>정보분산체계</th>
+										<td>경매완료 후 정산서가 작성되어 집계되어야 정보제공 가능</td>
+										<td>반입단계에서부터 실시간 정보분산 가능</td>
+										</tr>
+								  	</tbody>
+								</table>
+							</li>
+						</ul>
+
+						<ul class="mt50">
+							<li class="t04_tit"><p>6.<br/>장단점 비교</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:20%;">
+										<col style="width:40%;">
+										<col style="width:40%;">
+									</colgroup>
+									<thead>
+									<tr>
+									  <th>구분</th>
+									  <th>수지식</th>
+									  <th>전자식</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+									  <th>장점</th>
+									  <td class="tl">
+										- 별도 비용이 필요없음<br>
+										- 경매에 흥이 있음<br>
+										- 기존 중도매인은 별도의 적응 과정 불필요 </td>
+									  <td class="tl"> - 경매에 대한 불신 해소<br>
+										- 업무의 신속화.간소화<br>
+										- 안목경매 가능<br>
+										- 유통종사자 등에 대한 서비스 향상<br>
+										- 경매참가자 저변확대
+										</td>
+									</tr>
+									<tr>
+									  <th>단점</th>
+									  <td class="tl">
+										- 경매과정에 담합 등 불신 상존<br>
+										- 업무과정의 복합성.후진성<br>
+										- 눈치경매 조장<br>
+										- 경매참가에 애로<br>
+										- 신속한 정보전파에 애로
+										</td>
+									  <td class="tl">
+										- 설치비용 등 투자비용 과다<br>
+										- 유지.보수비용 발생<br>
+										- 노령화된 중도매인 적응 불편
+										</td>
+									</tr>
+								  </tbody></table>
+							</li>
+						</ul>
+						<ul class="mt50">
+							<li class="t04_tit"><p>7.<br/>흐름도</p></li>
+							<li class="t04_box ver2 tc">
+								<img class="img03" src="/static/img/table_img_03.png" alt="흐름도">
+							</li>
+						</ul>
+					</div>
+					<!-- 전자경매(E) -->
+					</div>
+					<!-- sub-contents(E) -->	
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

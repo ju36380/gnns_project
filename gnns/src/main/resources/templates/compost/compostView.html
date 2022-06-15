@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/compost/compostView.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+					<!-- sub상단(S) -->
+					<div class="sub_top">
+						<h2 class="sub_title"><span id="nTitle">부산물퇴비지원</span></h2>
+					</div>
+						<!-- sub상단(E) -->
+					<div class="sub_in">
+					
+						<!-- 레프트메뉴추가(S) -->					
+						<th:block th:replace="nav/adminMenu"></th:block>
+						<!-- 레프트메뉴추가(E) -->
+					
+						<!-- 상세테이블(S) -->
+						<div class="table_type_detail">
+							<table>
+								<caption></caption>
+								<colgroup>
+									<col width="15%">
+									<col width="35%">
+									<col width="15%">
+									<col width="35%">
+								</colgroup>
+								<thead>
+									<!--<tr class="head_member">
+										<th><p class="text_left"><span>이름</span><span th:text="${compostDetail.name}"></span></p></th>
+									</tr>-->
+									<tr class="head_member">
+										<td class="text_subject">이름</td>
+										<td class="text_content" colspan="3" th:text="${compostDetail.name}"></td>
+									</tr>
+									<tr class="head_member">
+										<td class="text_subject">전화번호</td>
+										<td class="text_content" th:text="${compostDetail.phoneNum}"></td>
+										<td class="text_subject">휴대폰</td>
+										<td class="text_content" th:text="${compostDetail.mobilePhone}"></td>
+									</tr>
+									<tr class="head_member">
+										<td class="text_subject">주소</td>
+										<td class="text_content" colspan="3" th:text="'[ '+${compostDetail.zipCode}+' ] '+${compostDetail.address}+' '+${compostDetail.subAddress}"></td>
+									</tr>
+									<tr class="head_member">
+										<td class="text_subject">사용일시</td>
+										<td class="text_content" th:text="${reservationDate}"></td>
+										<td class="text_subject">등록일</td>
+										<td class="text_content" th:text="${regDt}"></td>
+									</tr>
+									<tr class="head_member">
+										<td class="text_subject">출하 품목</td>
+										<td class="text_content" colspan='3' th:text="${compostDetail.breedNm}+' ( '+${compostDetail.breedCode}+' )'"></td>
+									</tr>
+									<tr  class="head_member">
+										<td class="text_subject m_height border_bo">필요량</td>
+										<td class="text_content border_bo" colspan='3' th:text="${compostDetail.shipmentIssue}"></td>
+									</tr>
+									<tr class="border_bo">
+										<td class="height_modi border_bo"></td>
+									</tr>
+									<tr  class="head_member">
+										<td class="text_subject">접수자명</td>
+										<td class="text_content" th:text="${compostDetail.receiptName}"></td>
+										<td class="text_subject">접수상태</td>
+										<td class="text_content" th:if="${compostDetail.receiptStatus == 'c'}">완료</td>
+										<td class="text_content" th:if="${compostDetail.receiptStatus == 'R'}">접수중</td>
+									</tr>
+									<tr  class="head_member">
+										<td class="text_subject">접수방법</td>
+										<td class="text_content" th:text="${compostDetail.receiptMethod}"></td>
+										<td class="text_subject">접수등록일</td>
+										<td class="text_content" th:text="${receiptDate}"></td>
+									</tr>
+									<tr  class="head_member">
+										<td class="text_subject m_height border_bo">접수내용</td>
+										<td class="text_content border_bo" colspan='3' th:text="${compostDetail.receiptContent}"></td>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<input type="hidden" id="msgView" th:value="${msgView}">
+						<div id="btn_id">
+							<a th:href="@{/compost/compostList(searchType=${searchType},keyword=${keyword},page=${page})}">목록</a>
+							<a th:href="@{/compost/compostUpdate(seq=${compostDetail.seq})}">수정</a>
+						</div>
+					<!-- 상세테이블(E) -->
+					</div>
+				</div>
+			<!-- sub-contents(E) -->	
+			</div>
+		</div>
+    </div>
+</html>

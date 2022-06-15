@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <!-- <script th:src="@{/static/js/shipper/salesHistoryList.js}"></script> -->
+        <script th:src="@{/static/js/shipper/salesTest.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">판매내역</h2>
+	
+					<!-- nav -->
+        			<th:block th:replace="nav/nav04"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in" >
+					<!-- 검색조건창(S) -->
+					<div class="search_box type2">
+						<label for="searchSel"></label>
+						<div class="date_from_to">
+							<div class="date_box">
+								<input type="text" class="datepicker" name="schDate" id="schDate">
+							</div>					
+						</div>							
+						<a href="#" class="btn_search" onclick="javascript:fn_search();">검색</a>
+					</div>
+					<!-- 검색조건창(E) -->
+					
+					<div class="title_box mt10" >
+						<div class="fl"  id="divBtn">
+							<a href="#" class="btn_type_02 print" onclick="javascript:print();">인쇄하기</a>
+						</div>
+						<div class="fr">
+							<span class="txt_unit">(단위:원)</span>
+						</div>
+					</div>
+					
+					<!-- 테이블01(S) -->
+					<div class="table_type_01 mt10" id="printArea">
+						<table>
+							<caption>판매내역 목록</caption>
+							<colgroup>
+								<col width="*%">
+								<col width="*%">
+								<col width="*%">
+								<col width="*%">
+								<col width="*%">
+								<col width="*%">
+								<col width="17%">
+								<col width="17%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">생산자</th>
+									<th scope="col">품종</th>
+									<th scope="col">단량</th>
+									<th scope="col">단위</th>
+									<th scope="col">등급</th>
+									<th scope="col">수량</th>
+									<th scope="col">단가</th>
+									<th scope="col">중도매인</th>
+								</tr>
+							</thead>
+							<tbody id="saleList">
+							</tbody>
+						</table>
+					</div>
+					<!-- 테이블01(E) -->
+	
+					<!-- 버튼(S) -->
+					<div class="btn_box">
+						<div class="fr" id="prevBtn"></div>
+						<div class="fr" id="nextBtn"></div> 
+					</div>	
+					<!-- 페이지박스(S) -->
+					<div class="paging_box" id="divPaging">
+					</div>
+					<input type="hidden" id="currentPage" th:value="${page}">
+					<!-- 페이지박스(E) -->
+					
+					<!-- 장부(S) -->
+					<div class="chart mt50" id="sumList">
+						
+					</div>
+					<!-- 장부(E) -->				
+	
+				</div>
+				<!-- sub-contents(E) -->
+				</div>	
+			</div>
+		</div>
+		
+    </div>
+    
+</html>

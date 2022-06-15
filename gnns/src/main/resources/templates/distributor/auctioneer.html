@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">경매사</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav02"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+					<div class="sub_in">
+						<div class="sub_box_02">
+							<div class="card_box">
+								<ul>
+									<li>
+										<span class="ico_part fruit">과일</span>
+										<img th:src="@{/static/img/person_bbd.png}" alt="배병덕영업부장">
+										<p class="worker_name">배병덕<span>영업부장</span></p>
+										<p class="ico_phone">010-2651-1179</p>
+									</li>
+									<li>
+										<span class="ico_part veget">채소</span>
+										<img th:src="@{/static/img/person_kdh.png}" alt="강동환경매차장">
+										<p class="worker_name">강동환<span>경매차장</span></p>
+										<p class="ico_phone">010-4384-8036</p>
+									</li>
+									<li>
+										<span class="ico_part fruit">과일</span>
+										<img th:src="@{/static/img/person_kkb.png}" alt="김기범영업부장">
+										<p class="worker_name">김기범<span>경매과장 </span></p>
+										<p class="ico_phone">010-2237-0589</p>
+									</li>
+									<li>
+										<span class="ico_part veget">채소</span>
+										<img th:src="@{/static/img/person_jyh.png}" alt="조용훈경매사">
+										<p class="worker_name">조용훈<span>경매사</span></p>
+										<p class="ico_phone">010-3389-7822</p>
+									</li>
+									<li>
+										<span class="ico_part fruit">과일</span>
+										 <img th:src="@{/static/img/person_ysh.png}" alt="유승현경매사">
+										<p class="worker_name">유승현<span>경매사</span></p>
+										<p class="ico_phone">010-8819-1257</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					<!-- 경매사(E) -->
+					</div>
+				</div>
+				<!-- sub-contents(E) -->	
+			</div>
+		</div>
+    </div>
+</html>

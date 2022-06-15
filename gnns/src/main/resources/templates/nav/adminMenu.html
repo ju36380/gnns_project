@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lagn="ko" 
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<div class="left-sub-menu">
+	<ul class="ls-wrap">
+		<li><a th:href="@{/member/adminUp}" class="ls-depth-01" id="admin_on">관리자 정보변경</a></li>
+		<li><a th:href="@{/compost/compostList}" class="ls-depth-01" id="compost_on">부산물 퇴비지원 신청</a></li>
+		<li><a th:href="@{/notice/adminList}" class="ls-depth-01" id="notice_on">시황정보<br/>공지사항 관리</a></li>
+		<li><a th:href="@{/safety/safetyAdminList}" class="ls-depth-01" id="safety_on">안전성검사 관리</a></li>
+		<li><a th:href="@{/board/boardAdminList}" class="ls-depth-01" id="board_on">게시판 관리</a></li>
+		<li><a th:href="@{/pds/pdsAdminList}" class="ls-depth-01" id="pds_on">자료실 관리</a></li>
+		<li><a th:href="@{/member/management}" class="ls-depth-01" id="manage_on">회원관리</a></li>
+		<li><a th:href="@{/circle/circleList}" class="ls-depth-01" id="circle_on">원표조회 및 검수</a></li>
+		<li><a href="#!" class="ls-depth-01">정산메세지 전송</a></li>
+		<li><a href="#!" class="ls-depth-01">공지메세지 전송</a></li>
+		<li><a href="#!" class="ls-depth-01">단건 전송</a></li>
+		<li><a th:href="@{/sms/smsList}" class="ls-depth-01" id="smsResult_on">전송결과 확인</a></li>
+		<li><a href="http://www.gnns.co.kr/Manage/StatusInquiry.aspx" target="_blank" class="ls-depth-01">출하자 신고 시스템</a></li>
+		<li><a th:href="@{/member/logout}" class="ls-depth-01 log-out">로그아웃</a></li>
+	</ul>
+</div>

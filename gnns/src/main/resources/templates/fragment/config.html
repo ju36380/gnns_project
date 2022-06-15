@@ -1,0 +1,31 @@
+<html lagn="ko" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <!--configFragment 선언-->
+    <th:block th:fragment="configFragment">
+
+          
+        <!-- 이 영역에 공통으로 사용할 css, js library를 선언한다. -->
+        <link rel="stylesheet" th:href="@{/static/css/reset.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/font.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/common.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/main.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/swiper.min.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/sub.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/jquery-ui.css}" >
+        <link rel="stylesheet" th:href="@{/static/css/custom.css}" >
+        
+        <script th:src="@{/static/js/jquery-1.11.2.min.js}"></script>
+        <script th:src="@{/static/js/swiper.min.js}"></script>
+        <script th:src="@{/static/js/jquery-ui.js}"></script>
+        <script th:src="@{/static/js/script.js}"></script>
+        <script th:src="@{/static/js/cmmn/common.js}"></script>
+        
+        <!-- Content Page의 CSS fragment 삽입 -->
+        <th:block layout:fragment="css"></th:block>
+        
+        <!-- Content Page의 script fragment 삽입 -->
+        <th:block layout:fragment="script"></th:block>
+    </th:block>
+</html>

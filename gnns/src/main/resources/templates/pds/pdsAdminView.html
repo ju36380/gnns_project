@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default_layout">
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+	<!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+	<script th:src="@{/static/js/pds/pdsAdminView.js}"></script>
+</th:block>
+
+<div layout:fragment="content">
+	<div class="wrap">
+		<div class="w_in">
+			<!-- sub-contents(S) -->
+			<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">자료실</h2>
+
+				</div>
+				<!-- sub상단(E) -->
+				<div class="sub_in">
+				
+					<!-- 레프트메뉴추가(S) -->					
+					<th:block th:replace="nav/adminMenu"></th:block>
+					<!-- 레프트메뉴추가(E) -->
+					
+					<!-- 상세테이블(S) -->
+					<div class="table_type_detail">
+						<table>
+							<caption></caption>
+							<colgroup>
+								<col width="33.3%">
+								<col width="33.3%">
+								<col width="33.3%">
+							</colgroup>
+							<thead>
+								<tr class="head_tit">
+									<th colspan="3"><span th:text="${pdsDetail.subject}"></span></th>
+								</tr>
+								<tr class="head_devide">
+									<th class="h_writer"><p>
+											<span>작성자</span><span th:text="${pdsDetail.regId}"></span>
+										</p></th>
+									<th class="h_day"><p>
+											<span>작성일</span><span th:text="${pdsDetail.regDttm}"></span>
+										</p></th>
+									<th class="h_views"><p>
+											<span>조회수</span><span th:text="${#numbers.formatInteger(pdsDetail.readCnt, 0, 'COMMA')}"></span>
+										</p></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="tc" colspan="3">
+										<!-- <div class="text_box" style="min-height:400px;" th:utext="${pdsDetail.contents}">
+										<pre th:text="${pdsDetail.contents}"></pre>
+										<span th:utext="${pdsDetail.contents}"></span>
+									</div> -->
+										<div class="text_box" style="min-height: 400px;" id="contentsArea">
+											<pre th:text="${pdsDetail.contents}"></pre>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot id="fileArea">
+							</tfoot>
+						</table>
+					</div>
+					<!-- 상세테이블(E) -->
+
+					<!-- 버튼(S) -->
+					<div class="btn_box">
+						<div class="fr" id="divBtn">
+							<input type="hidden" id="seqNum" th:value="${pdsDetail.pdsSeq}">
+							<input type="hidden" id="searchType" th:value="${searchType}">
+							<input type="hidden" id="keyword" th:value="${keyword}">
+							<input type="hidden" id="page" th:value="${page}"> 
+							
+							<a th:href="@{/pds/pdsAdminUpdate(pdsSeq=${pdsDetail.pdsSeq})}"	class="btn_type_01 gray list">수정</a> 
+							<a href="#"	onclick="javascript:pdsDel();" class="btn_type_01 gray list">삭제</a>
+						</div>
+					</div>
+					<div class="text_box" style="min-height: 400px;" id="contentsTest" th:utext="${pdsDetail.contents}">
+					
+					</div>
+				</div>
+				<!-- sub-contents(E) -->
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

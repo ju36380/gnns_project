@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/board/boardWrite.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">게시판</h2>
+			
+				</div>
+			<!-- sub상단(E) -->
+				<div class="sub_in">
+				
+					<!-- 레프트메뉴추가(S) -->					
+					<th:block th:replace="nav/adminMenu"></th:block>
+					<!-- 레프트메뉴추가(E) -->
+					
+					<form name="frm" id="frm" action="/board/boardAdminUp" method="post">
+					<!--  글쓰기테이블(S) -->
+					<div class="table_type_dl">
+						<div class="dl_title">
+							<dl>
+								<dt>제목</dt>
+								<dd><input type="text" id="title" name="subject" th:value="${boardDtl.subject}"><label for="title"></label></dd>
+							</dl>
+						</div>
+
+						<div class="dl_title dl_devide3">
+							<dl>
+								<dt>이름</dt>
+								<dd><input type="text" id="name" name="regNm" th:value="${boardDtl.regNm}"><label for="name"></label></dd>
+							</dl>
+							<dl>
+								<dt>이메일</dt>
+								<dd><input type="text" id="eMail" name ="email" th:value="${boardDtl.email}"><label for="eMail"></label></dd>
+							</dl>								
+							<dl>
+								<dt>비밀번호</dt>
+								<dd><input type="password" id="pw" name="passWd" value="1"><label for="pw"></label></dd>
+							</dl>	
+						</div>
+						<div class="dl_textarea">
+							<dl>
+								<dd>
+									<textarea placeholder="게시글을 작성해주세요" name="contents" id="contents" th:text="${boardDtl.contents}"></textarea>
+								</dd>
+							</dl>
+						</div>
+						<div class="dl_foot">
+							<dl class="dl_file">
+								<dt>첨부파일</dt>
+								<dd>
+									<div class="file_upload">
+										
+										<input type="text" class="upload_text" readonly="readonly">
+										
+										<div class="upload-btn_wrap">
+											<button type="button" title="파일선택">
+											<span class="btn_file_text">파일선택</span>  
+											<span class="btn_file_ico"></span>  
+											</button>
+											<input type="text" class="input_file" title="선택된 파일 없음" id="fileName">
+											<input type="file" class="input_file" title="선택된 파일 없음" onchange="uploadFile(this)" id="fileUpload">
+										</div>
+
+										
+									</div>
+									<div class="upoload_file_list" id="uploadFileArea">
+										<!-- <p class="file_name"><span>파일명</span><a href="#!" class="btn_file_close"></a></p> -->
+										<input th:if="${boardDtl.attchementFile} != ''" type="hidden" th:value="${boardDtl.attchementFile}" name="attchementFile" id="pre_file">
+									</div>
+ 
+								</dd>
+							</dl>
+						</div>
+						<span id="old_file" th:if="${boardDtl.attchementFile} != ''">기존파일 : 
+							<span id="file_id" th:text="${boardDtl.attchementFile}"></span>
+							<input type="hidden" th:value="${boardDtl.attchementFile}" id="delFile">
+							<a href="javascript:void(0);" onclick="javascript:fn_save()">x</a>							
+						</span>
+						<input type="hidden" value="2" name="hide" id="hide">
+					</div>
+					<input type="hidden" th:value="${boardSeq}" name="boardSeq" id="boardSeq"/>
+					<input type="hidden" th:value="${boardType}" name="boardType"/>
+					<!-- 글쓰기테이블(E) -->
+					</form>
+					<!-- 버튼(S) -->
+					<div class="btn_box tc btn_2">
+						<a href="javascript:history.back();" class="btn_type_01 gray cancel">취소</a>
+						<a href="javascript:void(0);" onclick="javascript:fn_boardRegist();" class="btn_type_01 black confirm">확인</a>
+					</div>
+					<!-- 버튼(E) -->
+			
+
+				</div>
+			</div>
+			<!-- sub-contents(E) -->
+
+	
+			</div>
+		</div>
+		
+    </div>
+</html>

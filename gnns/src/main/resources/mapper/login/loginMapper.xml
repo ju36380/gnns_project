@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.login.mapper.LoginMapper">
+
+ 	<select id="selectMember" parameterType="com.gnns.web.login.model.MemberModel" resultType="com.gnns.web.login.model.MemberModel">
+    	SELECT  
+			[일련번호] AS seq
+			, [이름] AS userNm
+			, [이메일] AS email
+			, [주민번호] AS jumin
+			, [사업자번호] AS bizNo
+			, [전화번호] AS telNum
+			, [팩스번호] AS faxNum
+			, [휴대폰] AS mobNum
+			, [우편번호] AS zipCd
+			, [주소1] AS addr
+			, [주소2] AS addrDtl
+			, [메모] AS memo
+			, [구분] AS memType
+			, [출하주코드] AS shipperCd
+			, [중도매인코드] AS salerCd
+			, [등록일] AS regDt
+			, [승인FLAG] AS aprvFlag
+			, [승인일] AS aprvDt
+			, [사유] AS aprvResn
+			, [아이디] AS userId
+			, [비밀번호] AS userPw
+		FROM web_member
+		WHERE [아이디] = #{userId}
+		AND [비밀번호] =#{userPw}
+    </select>
+    
+    <select id="selectLoginMember" parameterType="com.gnns.web.login.model.MemberModel" resultType="com.gnns.web.login.model.MemberModel">
+    	SELECT 
+    		[일련번호] AS seq
+			, [이름] AS userNm
+			, [이메일] AS email
+			, [주민번호] AS jumin
+			, [사업자번호] AS bizNo
+			, [전화번호] AS telNum
+			, [팩스번호] AS faxNum
+			, [휴대폰] AS mobNum
+			, [우편번호] AS zipCd
+			, [주소1] AS addr
+			, [주소2] AS addrDtl
+			, [메모] AS memo
+			, [구분] AS memType
+			, [출하주코드] AS shipperCd
+			, [중도매인코드] AS salerCd
+			, [등록일] AS regDt
+			, [승인FLAG] AS aprvFlag
+			, [승인일] AS aprvDt
+			, [사유] AS aprvResn
+			, [아이디] AS userId
+			, [비밀번호] AS userPw
+		FROM web_member 
+		WHERE [아이디] = #{userId}
+    </select>
+</mapper>    

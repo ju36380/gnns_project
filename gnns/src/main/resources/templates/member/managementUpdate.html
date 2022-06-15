@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <!-- index.html 고유 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:src="@{/static/js/member/managementUpdate.js}"></script>
+    </th:block>
+
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+					<!-- sub상단(S) -->
+					<div class="sub_top">
+						<h2 class="sub_title"><span id="nTitle">회원수정</span></h2>
+					</div>
+						<!-- sub상단(E) -->
+					<div class="sub_in">
+					
+						<!-- 레프트메뉴추가(S) -->					
+						<th:block th:replace="nav/adminMenu"></th:block>
+						<!-- 레프트메뉴추가(E) -->
+					
+						<!-- 상세테이블(S) -->
+						<div class="table_type_detail">
+							<form name="frm" id="frm" action="/member/memberUp" method="post">
+								<table>
+									<caption></caption>
+									<colgroup>
+										<col width="15%">
+										<col width="35%">
+										<col width="15%">
+										<col width="35%">
+									</colgroup>
+									<thead>
+										<tr class="head_member">
+											<td class="text_subject">이름</td>
+											<td class="text_content" th:text="${membereDtl.userNm}"></td>
+											<td class="text_subject">이메일</td>
+											<td class="text_content" th:text="${membereDtl.email}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">주민번호</td>
+											<td class="text_content" th:text="${membereDtl.jumin}"></td>
+											<td class="text_subject">사업자번호</td>
+											<td class="text_content" th:text="${membereDtl.bizNo}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">전화번호</td>
+											<td class="text_content" th:text="${membereDtl.telNum}"></td>
+											<td class="text_subject">휴대폰</td>
+											<td class="text_content" th:text="${membereDtl.mobNum}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">FAX</td>
+											<td class="text_content" th:text="${membereDtl.faxNum}"></td>
+											<td class="text_subject">등록일</td>
+											<td class="text_content" th:text="${regDt}"></td>
+										</tr>
+										<tr class="head_member">
+											<td class="text_subject">주소</td>
+											<td class="text_content" colspan='3' th:text="'[ '+${membereDtl.zipCd}+' ] '+${membereDtl.addr}+' '+${membereDtl.addrDtl}"></td>
+										</tr>
+										<tr  class="head_member">
+											<td class="text_subject border_bo">메모</td>
+											<td class="text_content border_bo" colspan='3' th:text="${membereDtl.memo}"></td>
+										</tr>
+										<tr class="border_bo">
+											<td class="height_modi border_bo"></td>
+										</tr>
+										<tr  class="head_member">
+											<td class="text_subject">출하주 코드</td>
+											<td class="text_content">
+												<input type="text" name="shipperCd" th:value="${shipperCd}" maxlength='5'>
+											</td>
+											<td class="text_subject">승인여부</td>
+											<td class="text_content">
+												<select name="aprvFlag" class="mem_sel">
+													<option value="N" th:selected="${membereDtl.aprvFlag}=='N'">보류</option>
+													<option value="Y" th:selected="${membereDtl.aprvFlag}=='Y'">승인</option>
+												</select>
+											</td>
+										</tr>
+										<tr  class="head_member">
+											<td class="text_subject m_height">사유 메모</td>
+											<td class="text_content" colspan='3'>
+												<textarea id="area_id" th:value="${membereDtl.aprvResn}" name="aprvResn" th:text="${membereDtl.aprvResn}"></textarea>
+											</td>
+										</tr>
+										<tr  class="head_member ">
+											<td class="text_subject border_bo">등록 아이디</td>
+											<td class="text_content border_bo" th:text="${membereDtl.userId}"></td>
+											<td class="text_subject border_bo">등록 비밀번호</td>
+											<td class="text_content border_bo">
+												<input type="text" name="userPw" th:value="${membereDtl.userPw}">
+											</td>
+										</tr>
+									</thead>
+									
+								</table>
+								<input type="hidden" name="seq" th:value="${membereDtl.seq}">
+								<div id="btn_id">
+									<button type="button" onclick="javascript:fn_submit();">수정</button>
+									<button type="button" onclick="javascript:history.back();">취소</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</html>

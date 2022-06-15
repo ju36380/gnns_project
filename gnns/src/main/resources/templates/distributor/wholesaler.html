@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default_layout">
+    <!-- index.html 고유 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <!-- link rel="stylesheet" th:href="@{/css/page/home.css}" > -->
+    </th:block>
+    
+    <div layout:fragment="content">
+        <div class="wrap">
+			<div class="w_in">
+				<!-- sub-contents(S) -->
+				<div class="sub_contents common">
+				<!-- sub상단(S) -->
+				<div class="sub_top">
+					<h2 class="sub_title">중도매인</h2>
+					<!-- nav -->
+        			<th:block th:replace="nav/nav02"></th:block>
+				</div>
+				<!-- sub상단(E) -->
+				<!-- sub상단(E) -->
+				<div class="sub_in">
+					<!-- 중도매인(S) -->
+					<div class="table_type_trans04 business">
+						<ul>
+							<li class="t04_tit"><p>과일부</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:15%;">
+										<col style="width:15%;">
+										<col style="width:15%;">
+										<col style="width:20%;">
+										<col style="width:20%;">
+										<col style="width:15%;">
+									</colgroup>
+									<thead>
+										<tr> 
+											<th>중도매인번호</th>
+											<th>상호</th>
+											<th>이름</th>
+											<th>점포전화번호</th>
+											<th>휴대폰</th>
+											<th>취급품목</th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr> 
+									  <td>103</td>
+									  <td>영주청과</td>
+									  <td>임상근</td>
+									  <td>&nbsp;</td>
+									  <td>010-8200-7940</td>
+									  <td>과일류</td>
+									</tr>
+									<!--<tr> 
+									  <td>104</td>
+									  <td>동아상회</td>
+									  <td>김규석</td>
+									  <td>033-644-2590</td>
+									  <td>010-5375-7002</td>
+									  <td>과일및건과류</td>
+									</tr>-->
+									<tr> 
+									  <td>105</td>
+									  <td>일화청과</td>
+									  <td>박종일</td>
+									  <td>033-641-0039</td>
+									  <td>010-6377-7838</td>
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>107</td>
+									  <td>성남청과</td>
+									  <td>김보유</td>
+									  <td>033-645-4829</td>
+									  <td>010-5395-4829</td>
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>113</td>
+									  <td>샘플청과</td>
+									  <td>박교근</td>
+									  <td>033-642-9113</td>
+									  <td>010-5113-9257</td>
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>114</td>
+									  <td>대풍상회</td>
+									  <td>김용인</td>
+									  <td>033-645-4933</td>
+									  <td>010-5365-2946</td>
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>116</td>
+									  <td>한농청과</td>
+									  <td>김계옥</td>
+									  <td>033-646-7641</td>
+									  <td>010-2571-8178</td>
+									  <td>과일류</td>
+									</tr>
+									<!--<tr> 
+									  <td>117</td>
+									  <td>소망청과</td>
+									  <td>임필규</td>
+									  <td>033-645-4754</td>
+									  <td>010-5376-4754</td>
+									  <td>과일류</td>
+									</tr>-->
+									<tr> 
+									  <td>120</td>
+									  <td>한일청과</td>
+									  <td>최종목</td>
+									  <td>033-643-3776</td>
+									  <td>010-2248-8198</td>
+				
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>121</td>
+									  <td>삼삼청과</td>
+									  <td>유영훈</td>
+									  <td>033-643-7729</td>
+									  <td>010-5372-1213</td>
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>122</td>
+									  <td>한미청과</td>
+									  <td>이광섭</td>
+									  <td>033-642-6510</td>
+									  <td>010-2438-6007</td>
+									  <td>수입과일</td>
+									</tr>
+									<tr> 
+									  <td>127</td>
+									  <td>강릉청과상회</td>
+									  <td>문기환</td>
+									  <td>033-643-4115</td>
+									  <td>010-5376-0176</td>
+									  <td>과일류</td>
+									</tr>
+									<tr> 
+									  <td>128</td>
+									  <td>자연청과</td>
+									  <td>염기섭</td>
+									  <td>033-643-8793</td>
+									  <td>010-5372-8793</td>
+									  <td>과일류</td>
+									</tr>
+									<!--<tr> 
+									  <td>129</td>
+									  <td>석민청과</td>
+									  <td>윤순애</td>
+									  <td>033-645-4754</td>
+									  <td>010-5650-4754</td>
+									  <td>과일류</td>
+									</tr>-->
+									<tr> 
+									  <td>132</td>
+									  <td>아성청과</td>
+									  <td>권혁엽</td>
+									  <td>033-643-4008</td>
+									  <td>010-5360-4008</td>
+									  <td>과일류</td>
+									</tr>
+									<tr>
+									  <td>136</td>
+									  <td>강원청과</td>
+									  <td>정경남</td>
+									  <td>033-642-6510</td>
+									  <td>010-2438-6007</td>
+									  <td>수입과일</td>
+									</tr>
+									<tr>
+									  <td>137</td>
+									  <td>태양청과</td>
+									  <td>정영희</td>
+									  <td>033-643-3776</td>
+									  <td>010-7477-5089</td>
+									  <td>과일류</td>
+									</tr>
+									<tr>
+									  <td>138</td>
+									  <td>잠수교청과</td>
+									  <td>양준태</td>
+									  <td>033-651-5085</td>
+									  <td>없음</td>
+									  <td>과일류</td>
+									</tr>
+									<tr>
+									  <td>139</td>
+									  <td>보광상회</td>
+									  <td>김만재</td>
+									  <td>033-644-2590</td>
+									  <td>010-9698-5534</td>
+									  <td>과일류</td>
+									</tr>
+									<tr>
+									  <td>140</td>
+									  <td>(주)대림청과</td>
+									  <td>염용섭</td>
+									  <td>033-643-8793</td>
+									  <td>010-6772-8793</td>
+									  <td>과일류</td>
+									</tr>
+									<tr>
+									  <td>141</td>
+									  <td>다솜청과</td>
+									  <td>임석민</td>
+									  <td>033-645-4754</td>
+									  <td>010-5031-4754</td>
+									  <td>과일류</td>
+									</tr>
+									<tr>
+									  <td>142</td>
+									  <td>(주)동아상회</td>
+									  <td>김규석</td>
+									  <td>033-644-2590</td>
+									  <td>010-5675-7002</td>
+									  <td>과일,견과류</td>
+									</tr>
+									<tr>
+									  <td>143</td>
+									  <td>(주)소망청과</td>
+									  <td>임필규</td>
+									  <td>033-645-4754</td>
+									  <td>010-5031-4754</td>
+									  <td>과일류</td>
+									</tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+						<ul>
+							<li class="t04_tit"><p>채소부</p></li>
+							<li class="t04_box">
+								<table>
+									<colgroup>
+										<col style="width:15%;">
+										<col style="width:15%;">
+										<col style="width:15%;">
+										<col style="width:20%;">
+										<col style="width:20%;">
+										<col style="width:15%;">
+									</colgroup>
+									<thead>
+									<tr> 
+									  <th>중도매인번호</th>
+									  <th>상호</th>
+									  <th>이름</th>
+									  <th>점포전화번호</th>
+									  <th>휴대폰</th>
+									  <th>취급품목</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr> 
+									  <td>208</td>
+									  <td>(주)주형농산</td>
+									  <td>이명호</td>
+									  <td>033-641-7060</td>
+									  <td>010-4303-9132</td>
+									  <td>청과류,식자재</td>
+									</tr>
+									<!--
+									<tr> 
+									  <td>213</td>
+									  <td>대지상회</td>
+									  <td>박범두</td>
+									  <td>033-646-7866</td>
+									  <td>010-5373-8710</td>
+									  <td>채소류</td>
+									</tr>
+									-->
+									<tr> 
+									  <td>216</td>
+									  <td>대성상회</td>
+									  <td>강종화</td>
+									  <td>033-646-4739</td>
+									  <td>010-9058-4739</td>
+									  <td>채소류</td>
+									</tr>
+									<tr> 
+									  <td>220</td>
+									  <td>(주)연한훼미리</td>
+									  <td>박종일</td>
+									  <td>033-643-8136</td>
+									  <td>010-5376-8136</td>
+									  <td>청과류,식자재</td>
+									</tr>
+									<tr> 
+									  <td>221</td>
+									  <td>청보상회</td>
+									  <td>이재호</td>
+									  <td>033-641-6045</td>
+									  <td>010-5237-6045</td>
+									  <td>마늘,양파</td>
+									</tr>
+									<tr> 
+									  <td>230</td>
+									  <td>군포농산</td>
+									  <td>박기원</td>
+									  <td>033-643-5999</td>
+									  <td>010-8791-5999</td>
+									  <td>양파,채소류</td>
+									</tr>
+												<!--
+									<tr> 
+									  <td>235</td>
+									  <td>강릉상회</td>
+									  <td>서봉길</td>
+									  <td>033-645-1349</td>
+									  <td>010-5375-1349</td>
+									  <td>당근,채소류</td>
+									</tr> -->
+									<tr> 
+									  <td>246</td>
+									  <td>거목농산</td>
+									  <td>박윤수</td>
+									  <td>033-645-2468</td>
+									  <td>010-5363-0973</td>
+									  <td>무,배추류</td>
+									</tr>
+									<tr> 
+									  <td>251</td>
+									  <td>(주)화신풍호</td>
+									  <td>정길자</td>
+									  <td>033-648-2737</td>
+									  <td>010-9577-9161</td>
+									  <td>청과류,식자재</td>
+									</tr>
+									
+									<tr> 
+									  <td>255</td>
+									  <td>공신상회</td>
+									  <td>이옥향</td>
+									  <td>033-645-0807</td>
+									  <td>010-3363-0807</td>
+									  <td>채소류,조미료</td>
+									</tr>
+									<!--<tr>
+									  <td>257</td>
+									  <td>이화농산</td>
+				
+									  <td>장재화</td>
+									  <td>033-648-3425</td>
+									  <td>010-9107-8594</td>
+									  <td>채소류</td>
+									</tr>
+									<tr>
+									  <td>258</td>
+									  <td>강원양돈농협</td>
+									  <td>최덕식</td>
+									  <td>033-642-2214</td>
+									  <td>010-4286-5060</td>
+									  <td>채소류</td>
+									</tr>-->
+									<!-- <tr>
+									  <td>260</td>
+									  <td>강원농산</td>
+									  <td>조희선 </td>
+									  <td>033-647-6611</td>
+									  <td>010-8240-8558</td>
+									  <td>채소류</td>
+									</tr> -->
+									<tr>
+									  <td>265</td>
+									  <td>경남마늘</td>
+									  <td>강민석</td>
+									  <td>033-642-3140</td>
+									  <td>010-5400-3140</td>
+									  <td>마늘</td>
+									</tr>
+									<!-- <tr>
+									  <td>266</td>
+									  <td>부광유통</td>
+									  <td>최종찬</td>
+									  <td>033-643-4612</td>
+									  <td>010-9733-4612</td>
+									  <td>무,배추류</td>
+									</tr>
+									<tr>
+									  <td>269</td>
+									  <td>대관령유통</td>
+									  <td>황동구</td>
+									  <td>033-648-7991</td>
+									  <td>011-375-7991</td>
+									  <td>채소류</td>
+									</tr> -->
+									<tr> 
+									  <td>270</td>
+									  <td>그린농산</td>
+									  <td>주옥분</td>
+									  <td>033-643-4485</td>
+									  <td>010-3385-4485</td>
+									  <td>양파</td>
+									</tr>
+									<tr>
+									  <td>271</td>
+									  <td>대가농산</td>
+									  <td>김재범</td>
+									  <td>-</td>
+									  <td>010-5374-1101</td>
+									  <td>채소류</td>
+									</tr>
+									<!--<tr>
+									  <td>273</td>
+									  <td>해동유통</td>
+									  <td>원성규</td>
+									  <td>033-531-6453</td>
+									  <td>010-6376-6453</td>
+									  <td>채소류</td>
+									</tr>-->
+									<tr>
+									  <td>275</td>
+									  <td>하솔푸드</td>
+									  <td>최옥순</td>
+									  <td>033-647-3425</td>
+									  <td>010-3360-2993</td>
+									  <td>채소류</td>
+									</tr>
+									<tr>
+									  <td>277</td>
+									  <td>무공해농산</td>
+									  <td>장석훈</td>
+									  <td>033-641-2472</td>
+									  <td>010-5036-0713</td>
+									  <td>양파</td>
+									</tr>
+												<!--
+									<tr>
+									  <td>278</td>
+									  <td>해성푸드시스템</td>
+									  <td>최태섭</td>
+									  <td>033-645-0807</td>
+									  <td>010-3340-8627</td>
+									  <td>채소류</td>
+									</tr>
+									-->
+												<!--
+									<tr>
+									  <td>279</td>
+									  <td>강원대관령농산</td>
+									  <td>조희선</td>
+									  <td>033-647-6611</td>
+									  <td>010-8240-8558</td>
+									  <td>-</td>
+									</tr>
+									-->
+									<tr>
+									  <td>280</td>
+									  <td>하나</td>
+									  <td>정창록</td>
+									  <td>033-535-7330</td>
+									  <td>010-2068-9290</td>
+									  <td>-</td>
+									</tr>
+									<tr>
+									  <td>281</td>
+									  <td>더푸드사천</td>
+									  <td>최정애</td>
+									  <td>-</td>
+									  <td>010-5366-3222</td>
+									  <td>채소류</td>
+									</tr>
+									<tr>
+									  <td>282</td>
+									  <td>이화농산</td>
+									  <td>장재화</td>
+									  <td>033-643-3425</td>
+									  <td>010-9107-3594</td>
+									  <td>채소류</td>
+									</tr>
+									   <tr>
+									  <td>284</td>
+									  <td>대관령푸드S</td>
+									  <td>장영애</td>
+									  <td>033-335-1333</td>
+									  <td>010-9819-1333</td>
+									  <td>채소류</td>
+									</tr>
+									 
+									   <tr>
+									  <td>285</td>
+									  <td>강릉상회</td>
+									  <td>남복신</td>
+									  <td>033-645-1349</td>
+									  <td>010-5375-1349</td>
+									  <td>채소류</td>
+									</tr>
+								  </tbody>
+								</table>
+							</li>
+						</ul>
+						
+					</div>
+					<!-- 중도매인(E) -->
+			
+
+				</div>
+			</div>
+				<!-- 테이블(E) -->
+				</div>
+			</div>
+		</div>
+    </div>
+</html>

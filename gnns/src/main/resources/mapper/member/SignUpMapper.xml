@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gnns.web.member.mapper.SignUpMapper">
+
+
+ 	<select id="idCheck" parameterType="com.gnns.web.login.model.MemberModel" resultType="Integer">
+    	SELECT 
+    		 COUNT([아이디]) AS CNT
+    	FROM web_member 
+		WHERE [아이디]=#{userId}
+    </select>
+    
+    <insert id="insertMember" parameterType="com.gnns.web.login.model.MemberModel">
+    	INSERT INTO WEB_MEMBER
+		(
+			  [이름]
+			, [이메일]
+			, [주민번호]
+			, [사업자번호]
+			, [전화번호]
+			, [팩스번호]
+			, [휴대폰]
+			, [우편번호]
+			, [주소1]
+			, [주소2]
+			, [메모]
+			, [구분]
+			, [출하주코드]
+			, [중도매인코드]
+			, [등록일]
+			, [승인FLAG]
+			, [아이디]
+			, [비밀번호]
+		)
+		VALUES
+		(
+			  #{userNm, jdbcType=CHAR}
+			, #{email, jdbcType=VARCHAR}
+			, '000000-0000000'
+			, #{bizNo, jdbcType=CHAR}
+			, #{telNum, jdbcType=CHAR}
+			, #{faxNum, jdbcType=CHAR}
+			, #{mobNum, jdbcType=CHAR}
+			, #{zipCd, jdbcType=CHAR}
+			, #{addr, jdbcType=VARCHAR}
+			, #{addrDtl, jdbcType=VARCHAR}
+			, #{memo, jdbcType=VARCHAR}
+			, #{memType, jdbcType=CHAR}
+			, #{shipperCd, jdbcType=CHAR}
+			, #{salerCd, jdbcType=CHAR}
+			, getdate()
+			, 'N'
+			, #{userId, jdbcType=CHAR}
+			, #{userPw, jdbcType=CHAR}
+		)
+    </insert>
+    <!-- 21-10-12~13 준혁 추가 -->
+    <select id="idSearch" parameterType="com.gnns.web.login.model.MemberModel" resultType="String">
+    	SELECT [아이디] 
+    	FROM WEB_MEMBER 
+    	WHERE [구분]=#{memType} 
+    	AND [이름]=#{userNm} 
+    	AND [이메일]=#{email}
+    </select>
+    
+    <select id="passSearch" parameterType="com.gnns.web.login.model.MemberModel" resultType="String">
+    	SELECT [비밀번호] 
+    	FROM WEB_MEMBER 
+    	WHERE [아이디]=#{userId} 
+    	AND [구분]=#{memType} 
+    	AND [이름]=#{userNm} 
+    	AND [이메일]=#{email} 
+    	AND [휴대폰]=#{mobNum}
+    </select>
+    
+    <update id="passUpdate" parameterType="com.gnns.web.login.model.MemberModel">
+    	UPDATE WEB_MEMBER 
+    	SET [비밀번호]=#{userPw} 
+    	WHERE [아이디]=#{userId}
+    </update>
+    <!-- 21-10-12~13 준혁 추가 -->
+    
+    <!-- 21-10-18 준혁 추가 -->
+    <select id="getManagement" parameterType="com.gnns.web.login.model.MemberModel" resultType="com.gnns.web.login.model.MemberModel">
+    			
+		SELECT 
+			TOP (#{psize}) [일련번호] AS memsql, 
+			[일련번호] AS SEQ,
+			[이름] AS userNm,
+			[이메일] AS email,
+			[주민번호] AS jumin,
+			[사업자번호] AS bizNo,
+			[전화번호] AS telNum,
+			[팩스번호] AS faxNum,
+			[휴대폰] AS mobNum,
+			[우편번호] AS zipCd,
+			[주소1] AS addr,
+			[주소2] AS addrDtl,
+			[메모] AS memo,
+			[구분] AS memType,
+			[출하주코드] AS shipperCd,
+			[중도매인코드] AS salerCd,
+			[등록일] AS regDt,
+			[승인FLAG] AS aprvFlag,
+			[승인일] AS aprvDt,
+			[아이디] AS userId,
+			[비밀번호] AS userPw,
+			(
+		SELECT 
+			COUNT([일련번호]) 
+		FROM web_member 
+		WHERE 1=1
+			<include refid="memToSearch"/>)-
+			(ROW_NUMBER() OVER(ORDER BY [일련번호] DESC)+(#{psize}*(#{page}-1)))+1 AS ROW_NUM
+		FROM web_member 
+		WHERE [일련번호] NOT IN(
+		SELECT 
+			TOP(#{psize}*(#{page}-1)) [일련번호] FROM WEB_MEMBER
+		WHERE 1=1 
+			<include refid="memToSearch"/>
+			ORDER BY [등록일] DESC
+			) 
+			<include refid="memToSearch"/>
+			ORDER BY [등록일] DESC
+		    	
+    </select>
+    
+    <select id="getMemberListCount" parameterType="com.gnns.web.login.model.MemberModel" resultType="com.gnns.web.login.model.MemberModel">
+    	SELECT
+    	COUNT(*) AS TOT_CNT
+    	, CAST(CEILING(CAST(COUNT(*) AS FLOAT)/10) AS INT) AS TOT_PAGE
+    	FROM WEB_MEMBER
+    	WHERE 1=1
+    	<include refid="memToSearch"/>
+    </select>
+    
+    <sql id="memToSearch">
+    	<if test='memberShip == "chul"'>
+    		AND [구분]='chul' <include refid="memberSearch"/>
+    	</if>
+    	<if test='memberShip == "jung"'>
+    		AND [구분]='jung' <include refid="memberSearch"/>
+    	</if>
+    	<if test='memberShip == "all"'>
+    		<include refid="memberSearch"/>
+    	</if>
+    </sql>
+    
+    <sql id="memberSearch">
+		<if test='searchType == "userNm"'>
+  			AND [이름] LIKE '%'+#{keyword}+'%'	
+  		</if>
+  		<if test='searchType == "jumin"'>
+  			AND [주민번호] LIKE '%'+#{keyword}+'%'
+  		</if>
+  		<if test='searchType == "bizNo"'>
+  			AND [사업자번호] LIKE '%'+#{keyword}+'%'	
+  		</if>
+  		<if test='searchType == "telNum"'>
+  			AND [전화번호] LIKE '%'+#{keyword}+'%'	
+  		</if>
+  		<if test='searchType == "mobNum"'>
+  			AND [휴대폰] LIKE '%'+#{keyword}+'%'	
+  		</if>
+  		<if test='searchType == "memType"'>
+  			AND [구분] LIKE '%'+#{keyword}+'%'	
+  		</if>
+	</sql>
+	
+	<select id="getMemberRead" parameterType="com.gnns.web.login.model.MemberModel" resultType="com.gnns.web.login.model.MemberModel">
+        SELECT
+			[일련번호] AS SEQ,
+			[이름] AS userNm,
+			[이메일] AS email,
+			[주민번호] AS jumin,
+			[사업자번호] AS bizNo,
+			[전화번호] AS telNum,
+			[팩스번호] AS faxNum,
+			[휴대폰] AS mobNum,
+			[우편번호] AS zipCd,
+			[주소1] AS addr,
+			[주소2] AS addrDtl,
+			[메모] AS memo,
+			[구분] AS memType,
+			[출하주코드] AS shipperCd,
+			[중도매인코드] AS salerCd,
+			[등록일] AS regDt,
+			[승인FLAG] AS aprvFlag,
+			[승인일] AS aprvDt,
+			[사유] AS aprvResn,
+			[아이디] AS userId,
+			[비밀번호] AS userPw
+		FROM WEB_MEMBER
+		WHERE [일련번호] =#{seq}
+    </select>
+
+    <update id="updateMember">
+    	UPDATE WEB_MEMBER 
+		SET [출하주코드] =#{shipperCd},
+			[승인FLAG] =#{aprvFlag},
+			[사유] =#{aprvResn},
+			[비밀번호] =#{userPw},
+			<if test='aprvFlag == "Y"'>
+				<if test='aprvDt == null'>
+					[승인일] = getdate()
+				</if>
+				<if test='aprvDt != null'>
+					[승인일] = #{aprvDt}
+				</if>
+			</if>
+			<if test='aprvFlag == "N"'>
+				[승인일] = NULL
+			</if>
+		WHERE [일련번호] =#{seq}
+    </update>
+    
+    <delete id="memberDelete">
+    	DELETE
+    	FROM WEB_MEMBER 
+    	WHERE [일련번호] =#{seq}
+    </delete>
+    
+    <!-- 21-10-18 준혁 추가 -->
+    
+</mapper>    
